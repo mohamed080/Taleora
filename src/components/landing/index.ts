@@ -1,4 +1,4 @@
-export * from "./Header";
+export * from "../layout/Header";
 export * from "./Hero";
 export * from "./ValuesStrip";
 export * from "./FeaturedSection";
@@ -6,4 +6,4 @@ export * from "./SplitShelves";
 export * from "./AuthorSpotlight";
 export * from "./FaqSection";
 export * from "./SectionDivider";
-export * from "./Footer";
+export * from "../layout/Footer";

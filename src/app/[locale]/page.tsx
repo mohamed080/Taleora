@@ -12,7 +12,7 @@ import {
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-[#fffef9]">
+    <div className="min-h-screen bg-[#FFFEFC]">
       <Header />
       <Hero />
       <ValuesStrip />
