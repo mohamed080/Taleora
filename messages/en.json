@@ -1,0 +1,44 @@
+{
+  "header": {
+    "brand": "Taleora",
+    "tagline": "KIDS BOOKS",
+    "nav": {
+      "home": "Home",
+      "books": "Books",
+      "authors": "Authors",
+      "community": "Community",
+      "about": "About"
+    },
+    "join": "Join Club"
+  },
+  "hero": {
+    "badge": "New Journey",
+    "title": "Taleora",
+    "subtitle": "Fun, safe, and meaningful books for children. Build imagination and values one story at a time.",
+    "explore": "Explore Books",
+    "watch": "Watch Intro",
+    "placeholder": "Character illustration area. Replace with your hero artwork asset."
+  },
+  "footer": {
+    "brand": "Taleora",
+    "brandLine": "A warm place for stories that shape happy learners.",
+    "explore": "Explore",
+    "community": "Community",
+    "contact": "Contact",
+    "exploreLinks": {
+      "library": "Book Library",
+      "paths": "Reading Paths",
+      "parents": "Parents Hub"
+    },
+    "communityLinks": {
+      "events": "Events",
+      "talks": "Author Talks",
+      "newsletter": "Newsletter"
+    },
+    "contactLines": {
+      "email": "hello@taleora.com",
+      "phone": "+20 000 000 000",
+      "hours": "Mon-Fri, 9:00-18:00"
+    }
+  }
+}
