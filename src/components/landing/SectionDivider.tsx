@@ -1,12 +1,46 @@
+import Image from "next/image";
+
 export function SectionDivider() {
   return (
-    <div
-      className="h-4"
-      style={{
-        backgroundImage:
-          "radial-gradient(circle at 10px -2px, #fb7185 10px, transparent 11px), radial-gradient(circle at 30px -2px, #f97316 10px, transparent 11px), radial-gradient(circle at 50px -2px, #facc15 10px, transparent 11px), radial-gradient(circle at 70px -2px, #22d3ee 10px, transparent 11px)",
-        backgroundSize: "80px 16px",
-      }}
+    <Image
+      src="/images/section-divider.png"
+      alt="Section Divider"
+      width={1920}
+      height={0}
+      draggable={false}
+      className="h-15"
     />
+  );
+}
+
+export function SectionDividerSm() {
+  return (
+   <div className="flex">
+     <Image
+       src="/images/section-divider-1.png"
+       alt="Section Divider"
+       width={1920}
+       height={0}
+       draggable={false}
+       className="h-7.5"
+     />
+     <Image
+       src="/images/section-divider-2.png"
+       alt="Section Divider"
+       width={1920}
+       height={0}
+       draggable={false}
+       className="h-7.5"
+     />
+     <Image
+       src="/images/section-divider-3.png"
+       alt="Section Divider"
+       width={1920}
+       height={0}
+       draggable={false}
+       className="h-7.5"
+     />
+   </div>
+    
   );
 }

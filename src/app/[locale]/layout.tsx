@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { DM_Serif_Display, Nunito } from "next/font/google";
+import localFont from "next/font/local";
+import { Montserrat } from "next/font/google";
 import "../globals.css";
 import { NextIntlClientProvider } from "next-intl";
 import { hasLocale } from "next-intl";
@@ -7,15 +8,31 @@ import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
 import { getMessages } from 'next-intl/server';
 
-const nunito = Nunito({
-  variable: "--font-body",
-  subsets: ["latin"],
-});
 
-const dmSerif = DM_Serif_Display({
-  variable: "--font-display",
+const montserrat = Montserrat({
+  variable: "--font-montserrat",
   subsets: ["latin"],
-  weight: "400",
+})
+
+const theSeasons = localFont({
+  src: [
+    {
+      path: "../../../public/fonts/theseasons-lt.otf",
+      weight: "300",
+      style: "normal",
+    },
+    {
+      path: "../../../public/fonts/theseasons-reg.otf",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "../../../public/fonts/theseasons-bd.otf",
+      weight: "700",
+      style: "normal",
+    },
+  ],
+  variable: "--font-seasons",
 });
 
 export const metadata: Metadata = {
@@ -40,7 +57,7 @@ export default async function RootLayout({
   
   return (
     <html lang={locale} dir={locale === "ar" ? "rtl" : "ltr"}>
-      <body className={`${nunito.variable} ${dmSerif.variable} antialiased`}>
+      <body className={`${montserrat.variable} ${theSeasons.variable} antialiased`}>
         <NextIntlClientProvider messages={messages}>
           {children}
         </NextIntlClientProvider>

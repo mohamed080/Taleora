@@ -1,39 +1,55 @@
 import { useTranslations } from "next-intl";
+import Image from "next/image";
+import { FaRegCopyright } from "react-icons/fa";
 
 export function Footer() {
   const t = useTranslations("footer");
 
   return (
-    <footer className="border-t border-orange-100 bg-[#fff8ec]">
-      <div className="mx-auto grid max-w-6xl gap-8 px-4 py-8 md:grid-cols-4 md:px-8">
+    <footer className="border-t border-orange-100 bg-[#FEF9E3]">
+      <div className="mx-auto grid max-w-7xl gap-8 px-4 py-10 md:grid-cols-4 md:px-8">
         <div>
-          <p className="font-serif text-3xl text-rose-500">{t("brand")}</p>
-          <p className="mt-2 text-sm text-stone-600">{t("brandLine")}</p>
+          <Image
+            src="/images/footer-logo.svg"
+            alt="Taleora Logo"
+            width={270}
+            height={100}
+            draggable={false}
+          />
         </div>
         <div>
-          <h3 className="font-semibold text-stone-800">{t("explore")}</h3>
-          <ul className="mt-2 space-y-1 text-sm text-stone-600">
-            <li>{t("exploreLinks.library")}</li>
-            <li>{t("exploreLinks.paths")}</li>
-            <li>{t("exploreLinks.parents")}</li>
+          <h4 className="font-medium text-lg text-primary">{t("product")}</h4>
+          <ul className="mt-5 space-y-2 text-base font-medium text-[#FFB24B]">
+            <li>{t("productLinks.feature")}</li>
+            <li>{t("productLinks.apiintegration")}</li>
+            <li>{t("productLinks.pricing")}</li>
+            <li>{t("productLinks.faq")}</li>
           </ul>
         </div>
         <div>
-          <h3 className="font-semibold text-stone-800">{t("community")}</h3>
-          <ul className="mt-2 space-y-1 text-sm text-stone-600">
-            <li>{t("communityLinks.events")}</li>
-            <li>{t("communityLinks.talks")}</li>
-            <li>{t("communityLinks.newsletter")}</li>
+          <h4 className="font-medium text-lg text-primary">{t("info")}</h4>
+          <ul className="mt-5 space-y-2 text-base font-medium text-[#FFB24B]">
+            <li>{t("infoLinks.privacypolicy")}</li>
+            <li>{t("infoLinks.terms")}</li>
           </ul>
         </div>
         <div>
-          <h3 className="font-semibold text-stone-800">{t("contact")}</h3>
-          <ul className="mt-2 space-y-1 text-sm text-stone-600">
+          <h4 className="font-medium text-lg text-primary">{t("contact")}</h4>
+          <ul className="mt-5 space-y-2 text-base font-medium text-[#FFB24B]">
+            <li>{t("contactLines.address")}</li>
             <li>{t("contactLines.email")}</li>
             <li>{t("contactLines.phone")}</li>
-            <li>{t("contactLines.hours")}</li>
+            <li>{t("contactLines.phone2")}</li>
           </ul>
         </div>
+      </div>
+      {/* <Copyright /> */}
+      <div className="border-t border-t-primary text-center">
+        <p className="py-3 text-base text-primary flex justify-center items-center
+         gap-2" >
+          <FaRegCopyright />
+          {t("copyright")}
+        </p>
       </div>
     </footer>
   );

@@ -1,28 +1,34 @@
 import {
-  AuthorSpotlight,
-  FaqSection,
-  FeaturedSection,
-  Footer,
   Header,
   Hero,
+  MagicWorks,
+  TopRatedBooks,
   SectionDivider,
-  SplitShelves,
-  ValuesStrip,
+  PrincessSection,
+  KidSection,
+  CareerAdventure,
+  FaqSection,
+  Footer,
+  SectionDividerSm,
 } from "@/components/landing";
+
 
 export default function Home() {
   return (
     <div className="min-h-screen bg-[#FFFEFC]">
       <Header />
-      <Hero />
-      <ValuesStrip />
-      <SectionDivider />
-      <FeaturedSection />
-      <SplitShelves />
-      <SectionDivider />
-      <AuthorSpotlight />
-      <FaqSection />
-      <SectionDivider />
+      <main>
+        <Hero />
+        <MagicWorks />
+        <TopRatedBooks />
+        <SectionDivider />
+        <PrincessSection />
+        <KidSection />
+        <SectionDivider />
+        <CareerAdventure />
+        <FaqSection />
+        <SectionDividerSm />
+      </main>
       <Footer />
     </div>
   );
