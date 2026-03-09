@@ -3,9 +3,10 @@
     "nav": {
       "home": "Home",
       "books": "Books",
-      "authors": "Authors",
-      "community": "Community",
-      "about": "About"
+            "stickers": "Stickers",
+
+      "mybooks": "My Books",
+      "support": "Support"
     },
     "login": "Login",
     "signup": "Sign Up"

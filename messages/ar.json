@@ -3,9 +3,9 @@
     "nav": {
       "home": "الرئيسية",
       "books": "الكتب",
-      "authors": "المؤلفون",
-      "community": "المجتمع",
-      "about": "حول"
+            "stickers": "الاستيكرز",
+      "mybooks": "كتبي",
+      "support": "الدعم"
     },
     "login": "تسجيل الدخول",
     "signup": "انشاء حساب"

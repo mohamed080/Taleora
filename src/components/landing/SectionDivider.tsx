@@ -8,7 +8,7 @@ export function SectionDivider() {
       width={1920}
       height={0}
       draggable={false}
-      className="h-15"
+      className="h-10 sm:h-15"
     />
   );
 }
@@ -22,7 +22,7 @@ export function SectionDividerSm() {
        width={1920}
        height={0}
        draggable={false}
-       className="h-7.5"
+       className="sm:h-7.5"
      />
      <Image
        src="/images/section-divider-2.png"
@@ -38,7 +38,7 @@ export function SectionDividerSm() {
        width={1920}
        height={0}
        draggable={false}
-       className="h-7.5"
+       className="h-5 sm:h-7.5"
      />
    </div>
     

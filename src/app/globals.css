@@ -127,6 +127,7 @@ body {
   margin: 0;
   background: radial-gradient(circle at top left, #fff3df 0%, #fffef9 45%);
   font-family: var(--font-montserrat), sans-serif;
+  overflow-x: hidden;
 }
 
 h1,

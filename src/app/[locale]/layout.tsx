@@ -6,13 +6,13 @@ import { NextIntlClientProvider } from "next-intl";
 import { hasLocale } from "next-intl";
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
-import { getMessages } from 'next-intl/server';
-
+import { getMessages } from "next-intl/server";
+import { Footer, Header } from "@/components/landing";
 
 const montserrat = Montserrat({
   variable: "--font-montserrat",
   subsets: ["latin"],
-})
+});
 
 const theSeasons = localFont({
   src: [
@@ -54,12 +54,16 @@ export default async function RootLayout({
   }
 
   const messages = await getMessages();
-  
+
   return (
     <html lang={locale} dir={locale === "ar" ? "rtl" : "ltr"}>
-      <body className={`${montserrat.variable} ${theSeasons.variable} antialiased`}>
+      <body
+        className={`${montserrat.variable} ${theSeasons.variable} antialiased`}
+      >
         <NextIntlClientProvider messages={messages}>
-          {children}
+          <Header />
+            {children}
+          <Footer />
         </NextIntlClientProvider>
       </body>
     </html>

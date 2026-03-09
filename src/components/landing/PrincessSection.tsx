@@ -1,41 +1,55 @@
 "use client";
 
 import Image from "next/image";
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { useKeenSlider } from "keen-slider/react";
 import { Button } from "../ui/button";
 import { AiFillStar } from "react-icons/ai";
 import "keen-slider/keen-slider.min.css";
 import Link from "next/link";
+import { motion, useInView } from "framer-motion";
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 40 },
+  visible: (i = 0) => ({
+    opacity: 1,
+    y: 0,
+    transition: {
+      delay: i * 0.15,
+      duration: 0.6,
+      ease: [0.22, 1, 0.36, 1] as const,
+    },
+  }),
+};
+
+const slideIn = (direction: "left" | "right") => ({
+  hidden: { opacity: 0, x: direction === "right" ? 60 : -60 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: {
+      duration: 0.8,
+      ease: [0.22, 1, 0.36, 1] as const,
+      delay: 0.2,
+    },
+  },
+});
 
 const books = [
-  {
-    id: 1,
-    image: "/images/bookposter-1.png",
-    key: "book1",
-  },
-  {
-    id: 2,
-    image: "/images/bookposter-2.png",
-    key: "book2",
-  },
-  {
-    id: 3,
-    image: "/images/bookposter-1.png",
-    key: "book1",
-  },
-  {
-    id: 4,
-    image: "/images/bookposter-2.png",
-    key: "book2",
-  },
+  { id: 1, image: "/images/bookposter-1.png", key: "book1" },
+  { id: 2, image: "/images/bookposter-2.png", key: "book2" },
+  { id: 3, image: "/images/bookposter-1.png", key: "book1" },
+  { id: 4, image: "/images/bookposter-2.png", key: "book2" },
 ];
 
 export function PrincessSection() {
   const t = useTranslations("books");
   const locale = useLocale();
   const isRTL = useMemo(() => locale.startsWith("ar"), [locale]);
+
+  const sectionRef = useRef(null);
+  const isInView = useInView(sectionRef, { once: true, margin: "-80px" });
 
   const slideGroups = useMemo(() => {
     const groups: Array<(typeof books)[number][]> = [];
@@ -57,77 +71,123 @@ export function PrincessSection() {
   });
 
   return (
-    <section className="py-10 max-w-7xl mx-auto ">
-      <div className="grid md:grid-cols-2 gap-2 items-center">
-        <div>
-          <h1 className="text-5xl font-bold text-[#82003C] mb-4">
+    <section ref={sectionRef} className="py-10 max-w-7xl mx-auto px-4">
+      <div className="grid grid-cols-1 lg:grid-cols-2 items-start">
+        {/* Left — text + image */}
+        <motion.div
+          variants={slideIn(isRTL ? "right" : "left")}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+          className="flex flex-col items-center text-center lg:items-start md:text-start mt-5"
+        >
+          <motion.h1
+            variants={fadeUp}
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
+            custom={0}
+            className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#82003C] mb-3"
+          >
             {t("princess.title")} <br />
             <span className="text-primary">{t("princess.highlight")}</span>
-          </h1>
-          <p className="text-gray font-medium text-3xl mb-12">
+          </motion.h1>
+
+          <motion.p
+            variants={fadeUp}
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
+            custom={1}
+            className="text-gray font-medium text-xl sm:text-2xl lg:text-3xl mb-8 sm:mb-12"
+          >
             {t("princess.subtitle")}
-          </p>
-          <Image
-            src="/images/princess.png"
-            alt={t("princess.imageAlt")}
-            width={511}
-            height={570}
-            draggable={false}
-          />
-        </div>
-        {/* Slider */}
-        <div className="relative">
+          </motion.p>
+
+          <motion.div
+            variants={fadeUp}
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
+            custom={2}
+            className="w-full max-w-75 sm:max-w-95 md:max-w-none flex justify-center lg:justify-start"
+          >
+            <Image
+              src="/images/princess.png"
+              alt={t("princess.imageAlt")}
+              width={511}
+              height={570}
+              draggable={false}
+              className=" h-auto object-contain"
+            />
+          </motion.div>
+        </motion.div>
+
+        {/* Right — Slider */}
+        <motion.div
+          variants={fadeUp}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+          custom={3}
+          className="relative w-full"
+        >
+          {/* Prev arrow */}
           <button
             type="button"
             onClick={() => instanceRef.current?.prev()}
             disabled={currentSlide === 0}
             aria-label={t("prev")}
-            className="absolute top-1/2 -left-20 -translate-y-1/2 z-10 rounded-full transition cursor-pointer  disabled:opacity-40 disabled:cursor-not-allowed"
+            className="absolute top-1/2 -left-2 lg:-left-4 2xl:-left-20 -translate-y-1/2 z-10 rounded-full transition cursor-pointer  disabled:opacity-40 disabled:cursor-not-allowed"
           >
             <Image
-              src="/images/arrow-left-pink.svg"
+              src={
+                isRTL
+                  ? "/images/arrow-right-pink.svg"
+                  : "/images/arrow-left-pink.svg"
+              }
               alt={t("prev")}
               width={60}
               height={60}
+              className="w-12 lg:w-15 rounded-full lg:rounded-0"
             />
           </button>
 
+          {/* Slides */}
           <div ref={sliderRef} className="keen-slider overflow-hidden">
             {slideGroups.map((group, groupIdx) => (
               <div
                 key={groupIdx}
-                className="keen-slider__slide flex justify-center py-5"
+                className="keen-slider__slide flex justify-center py-5 px-2 sm:px-5"
               >
-                <div className="space-y-6">
+                <div className="space-y-4 sm:space-y-6 w-full max-w-150">
                   {group.map((slide) => (
                     <div
                       key={slide.id}
-                      className="bg-white shadow-lg rounded-xl p-7 w-full max-w-155 max-h-80 grid grid-cols-1 gap-6 sm:grid-cols-[auto_1fr]"
+                      className="bg-white shadow-lg rounded-xl p-4 sm:p-7 w-full grid grid-cols-[auto_1fr] gap-4 sm:gap-6"
                     >
+                      {/* Book cover */}
                       <div className="flex items-center justify-center">
                         <Image
                           src={slide.image}
                           alt={t("imageAlt")}
                           width={135}
                           height={260}
-                          className="rounded-2xl object-cover"
+                          className="rounded-2xl object-cover w-22.5 sm:w-27.5 lg:w-33.75 h-auto"
                           priority={slide.id === 1}
                         />
                       </div>
-                      <div className="flex flex-col justify-between">
-                        <div className="text-start my-8">
-                          <p className="text-sm font-bold text-gray mb-2">
+
+                      {/* Book details */}
+                      <div className="flex flex-col justify-between text-start py-4 sm:py-6">
+                        <div>
+                          <p className="text-xs sm:text-sm font-bold text-gray mb-1">
                             {t(`${slide.key}.age`)}
                           </p>
-                          <h4 className="text-xl font-bold mb-3">
+                          <h4 className="text-base sm:text-xl font-bold mb-2">
                             {t(`${slide.key}.title`)}
                           </h4>
-                          <p className="text-base text-gray font-medium mb-4">
+                          <p className="text-xs sm:text-base text-gray font-medium mb-3 line-clamp-2 sm:line-clamp-none">
                             {t(`${slide.key}.description`)}
                           </p>
-                          <div className="flex items-center gap-2 mb-4">
+                          <div className="flex items-center flex-wrap gap-2 mb-3">
                             <div
-                              className="flex items-center gap-1 text-[#F5C15E] shadow-md rounded-full px-2 py-1 text-lg"
+                              className="flex items-center gap-1 text-[#F5C15E] shadow-md rounded-full px-2 py-1 text-base sm:text-lg"
                               aria-label={t("ratingAlt")}
                             >
                               <AiFillStar />
@@ -136,14 +196,14 @@ export function PrincessSection() {
                               <AiFillStar />
                               <AiFillStar className="opacity-30" />
                             </div>
-                            <span className="text-sm text-gray font-medium">
+                            <span className="text-xs sm:text-sm text-gray font-medium">
                               {t(`${slide.key}.sold`)}
                             </span>
                           </div>
                           <div className="text-end">
                             <Button
-                            asChild
-                              className="px-10 py-6 text-right"
+                              asChild
+                              className="px-5 py-4 sm:px-10 sm:py-6"
                               variant="default"
                               size="lg"
                             >
@@ -161,37 +221,44 @@ export function PrincessSection() {
             ))}
           </div>
 
+          {/* Next arrow */}
           <button
             type="button"
             onClick={() => instanceRef.current?.next()}
             disabled={currentSlide === slideGroups.length - 1}
             aria-label={t("next")}
-            className="absolute top-1/2 -right-20 -translate-y-1/2 z-10  p-3 transition cursor-pointer  disabled:opacity-40 disabled:cursor-not-allowed"
+            className="absolute top-1/2 -right-2 lg:-right-4 2xl:-right-20 -translate-y-1/2 z-10  p-3 transition cursor-pointer  disabled:opacity-40 disabled:cursor-not-allowed"
           >
             <Image
-              src="/images/arrow-right-pink.svg"
+              src={
+                isRTL
+                  ? "/images/arrow-left-pink.svg"
+                  : "/images/arrow-right-pink.svg"
+              }
               alt={t("next")}
               width={60}
               height={60}
+              className="w-12 lg:w-15 rounded-full lg:rounded-0"
             />
           </button>
 
+          {/* Dots */}
           <div className="mt-6 flex justify-center gap-2">
             {slideGroups.map((_, idx) => (
               <button
                 key={idx}
                 type="button"
                 onClick={() => instanceRef.current?.moveToIdx(idx)}
-                className={`h-2 w-2 rounded-full transition ${
+                className={`h-2 rounded-full transition-all duration-300 ${
                   idx === currentSlide
-                    ? "bg-primary w-10"
-                    : "bg-primary/45 hover:bg-primary/80"
+                    ? "bg-primary w-8 sm:w-10"
+                    : "bg-primary/45 w-2 hover:bg-primary/80"
                 }`}
                 aria-label={`${t("prev")} ${idx + 1}`}
               />
             ))}
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

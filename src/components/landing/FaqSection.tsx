@@ -1,14 +1,21 @@
+// components/faq-section.tsx  ← server component stays async
 import { getTranslations } from "next-intl/server";
-import { IoIosArrowDown } from "react-icons/io";
+import { FaqAccordion } from "./faq-accordion";
+
+const faqKeys = [
+  { q: "q1", a: "a1" },
+  { q: "q2", a: "a2" },
+  { q: "q3", a: "a3" },
+];
 
 export async function FaqSection() {
   const t = await getTranslations("faq");
 
-    const faqItems = [
-    { q: "q1", a: "a1" },
-    { q: "q2", a: "a2" },
-    { q: "q3", a: "a3" },
-  ];
+  // Resolve translations server-side
+  const items = faqKeys.map(({ q, a }) => ({
+    q: t(q),
+    a: t(a),
+  }));
 
   return (
     <section className="mx-auto max-w-4xl px-4 py-19 md:px-8">
@@ -16,32 +23,7 @@ export async function FaqSection() {
         {t("title")}
       </h2>
 
-      <div className="mt-8 space-y-3">
-        {faqItems.map((item, i) => (
-          <details
-            key={i}
-            className="group  border-b border-b-[#D9D9D9] p-5 transition-all duration-300 open:backdrop-blur-[20.875px] open:shadow-[0px_0.8px_0px_0px_#FFFFFF_inset]"
-          >
-            <summary className="flex cursor-pointer list-none items-center justify-between">
-              <span className="text-base font-medium text-[#83003D]">
-                {t(item.q)}
-              </span>
-
-              <IoIosArrowDown
-                size={20}
-                className="transition-transform duration-300 group-open:rotate-180 text-[#83003D]"
-              />
-            </summary>
-
-            {/* smooth animation */}
-            <div className="grid grid-rows-[0fr] transition-all duration-300 group-open:grid-rows-[1fr]">
-              <p className="overflow-hidden pt-3 text-sm text-stone-600">
-                {t(item.a)}
-              </p>
-            </div>
-          </details>
-        ))}
-      </div>
+      <FaqAccordion items={items} />
     </section>
   );
 }
