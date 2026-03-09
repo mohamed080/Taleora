@@ -40,7 +40,7 @@ export function Footer() {
             width={270}
             height={100}
             draggable={false}
-            className="w-40 sm:w-56 md:w-[270px] h-auto"
+            className="w-40 sm:w-56 md:w-67.5 h-auto"
           />
         </motion.div>
 

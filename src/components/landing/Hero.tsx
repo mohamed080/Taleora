@@ -4,9 +4,9 @@ import { useLocale, useTranslations } from "next-intl";
 import Image from "next/image";
 import { Button } from "../ui/button";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 
-const fadeUp = {
+const fadeUp: Variants = {
   hidden: { opacity: 0, y: 30 },
   visible: (i = 0) => ({
     opacity: 1,
@@ -15,7 +15,7 @@ const fadeUp = {
   }),
 };
 
-const fadeIn = {
+const fadeIn: Variants = {
   hidden: { opacity: 0 },
   visible: (i = 0) => ({
     opacity: 1,
@@ -54,7 +54,7 @@ export function Hero() {
           height={400}
           priority
           draggable={false}
-          className="object-contain w-[120px] md:w-[180px] lg:w-[220px]"
+          className="object-contain w-30 md:w-45 lg:w-55"
         />
       </motion.div>
 
@@ -73,7 +73,7 @@ export function Hero() {
           height={330}
           priority
           draggable={false}
-          className="object-contain w-[70px] md:w-[100px] lg:w-[120px]"
+          className="object-contain w-17.5 md:w-25 lg:w-30"
         />
       </motion.div>
 
@@ -85,7 +85,7 @@ export function Hero() {
             initial="hidden"
             animate="visible"
             custom={0}
-            className="mb-4 w-full max-w-[340px] sm:max-w-[420px] md:max-w-[520px] lg:max-w-[580px]"
+            className="mb-4 w-full max-w-85 sm:max-w-105 md:max-w-130 lg:max-w-145"
           >
             <Image
               src="/images/hero-logo.png"
@@ -102,7 +102,7 @@ export function Hero() {
             initial="hidden"
             animate="visible"
             custom={1}
-          className="text-base leading-snug text-accent sm:text-lg md:text-[22px] lg:text-[26px] max-w-[480px]">
+          className="text-base leading-snug text-accent sm:text-lg md:text-[22px] lg:text-[26px] max-w-120">
             {t.rich("title", {
               hero: (chunks) => (
                 <span className="bg-[linear-gradient(132.78deg,#FF6DCA_37.86%,#FFB24B_86.43%)] bg-clip-text text-transparent">
@@ -150,7 +150,7 @@ export function Hero() {
             height={500}
             priority
             draggable={false}
-            className="max-w-[480px] lg:max-w-[600px] xl:max-w-[680px] object-contain drop-shadow-xl"
+            className="max-w-120 lg:max-w-150 xl:max-w-170 object-contain drop-shadow-xl"
           />
         </motion.div>
 
@@ -169,7 +169,7 @@ export function Hero() {
                     height={360}
                     priority
                     draggable={false}
-                    className="w-full max-w-[360px] sm:max-w-[420px] object-contain drop-shadow-lg"
+                    className="w-full max-w-90 sm:max-w-105 object-contain drop-shadow-lg"
                   />
                 </motion.div>
       </div>

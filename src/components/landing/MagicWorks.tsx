@@ -11,7 +11,7 @@ const fadeUp = {
   visible: (i = 0) => ({
     opacity: 1,
     y: 0,
-    transition: { delay: i * 0.15, duration: 0.6, ease: [0.22, 1, 0.36, 1] },
+    transition: { delay: i * 0.15, duration: 0.6, ease: [0.22, 1, 0.36, 1] as const },
   }),
 };
 
@@ -20,7 +20,7 @@ const slideIn = (direction: "left" | "right") => ({
   visible: {
     opacity: 1,
     x: 0,
-    transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1], delay: 0.2 },
+    transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] as const, delay: 0.2 },
   },
 });
 
@@ -30,7 +30,7 @@ const cardVariants = {
     opacity: 1,
     y: 0,
     scale: 1,
-    transition: { delay: i * 0.15 + 0.3, duration: 0.55, ease: [0.22, 1, 0.36, 1] },
+    transition: { delay: i * 0.15 + 0.3, duration: 0.55, ease: [0.22, 1, 0.36, 1] as const },
   }),
 };
 
@@ -77,7 +77,7 @@ export function MagicWorks() {
           animate={isInView ? "visible" : "hidden"}
           className={`order-1 md:col-span-3 flex justify-center ${isRtl ? "md:order-2" : ""}`}
         >
-          <div className="w-full max-w-[300px] sm:max-w-[340px] md:max-w-none">
+          <div className="w-full max-w-75 sm:max-w-85 md:max-w-none">
             <Image
               src="/images/magicwork-image.png"
               alt={t("title")}
