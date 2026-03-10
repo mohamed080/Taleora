@@ -10,7 +10,7 @@ import { AiFillStar } from "react-icons/ai";
 import "keen-slider/keen-slider.min.css";
 import Link from "next/link";
 import { useInView, motion } from "framer-motion";
-import { start } from "repl";
+import { books } from "@/lib/books";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 40 },
@@ -29,13 +29,6 @@ const slideIn = (direction: "left" | "right") => ({
     transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] as const, delay: 0.3 },
   },
 });
-
-const books = [
-  { id: 1, image: "/images/bookposter-1.png", key: "book1" },
-  { id: 2, image: "/images/bookposter-2.png", key: "book2" },
-  { id: 3, image: "/images/bookposter-1.png", key: "book1" },
-  { id: 4, image: "/images/bookposter-2.png", key: "book2" },
-];
 
 export function TopRatedBooks() {
   const t = useTranslations("books");
@@ -169,7 +162,7 @@ export function TopRatedBooks() {
                               {t(`${slide.key}.title`)}
                             </h4>
                             <p className="text-xs sm:text-base text-gray font-medium mb-3 line-clamp-2 sm:line-clamp-none">
-                              {t(`${slide.key}.description`)}
+                              {t(`${slide.key}.subtitle`)}
                             </p>
                             <div className="flex flex-wrap items-center gap-2 mb-3">
                               <div

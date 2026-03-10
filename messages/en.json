@@ -3,7 +3,7 @@
     "nav": {
       "home": "Home",
       "books": "Books",
-            "stickers": "Stickers",
+      "stickers": "Stickers",
 
       "mybooks": "My Books",
       "support": "Support"
@@ -14,7 +14,7 @@
   "hero": {
     "title": "Make Them the <hero>Hero</hero> of Their Own Story",
     "view": "View All Books",
-    "private":"100% Private & Secure"
+    "private": "100% Private & Secure"
   },
   "magicWorks": {
     "title": "How the Magic Works",
@@ -47,7 +47,7 @@
       "imageAlt": "Little princess illustration"
     },
     "kid": {
-       "title": "Books for your",
+      "title": "Books for your",
       "highlight": "little Warrior ",
       "subtitle": "The stories kids and parents can't stop talking about.",
       "imageAlt": "little Warrior  illustration"
@@ -55,20 +55,23 @@
     "book1": {
       "age": "Ages 4-9",
       "title": "The Galactic Candy Rush",
-      "description": "Join your child on a wild ride through a sugary solar system. Our #1 most gifted book!",
+      "subtitle": "Join your child on a wild ride through a sugary solar system. Our #1 most gifted book!",
+      "description": "When kindness calls, even the smallest acts can change everything. In this enchanting personalized tale, a Princess follows a glowing guide through gardens, lakes, and stormy skies, helping new friends discover their true strength. Along the way, she learns that bravery and compassion are the brightest magic of all.",
       "sold": "Over 10k sold"
     },
     "book2": {
       "age": "Ages 4-9",
       "title": "The Galactic Candy Rush",
-      "description": "Join your child on a wild ride through a sugary solar system. Our #1 most gifted book!",
+      "subtitle": "Join your child on a wild ride through a sugary solar system. Our #1 most gifted book!",
+      "description": "When kindness calls, even the smallest acts can change everything. In this enchanting personalized tale, a Princess follows a glowing guide through gardens, lakes, and stormy skies, helping new friends discover their true strength. Along the way, she learns that bravery and compassion are the brightest magic of all.",
       "sold": "Over 10k sold"
     },
     "personalize": "Personalize",
     "ratingAlt": "Book rating",
     "prev": "Previous",
     "next": "Next",
-    "imageAlt": "Book poster"
+    "imageAlt": "Book poster",
+    "coinAlt": "Coin icon"
   },
   "careerAdventure": {
     "title": "Inspire Their Dreams with Hyper personalised Career Adventures",
@@ -88,7 +91,7 @@
     "description": "The page may have moved, disappeared, or never existed in this tale.",
     "backHome": "Return Home"
   },
-   "faq": {
+  "faq": {
     "title": "Frequently Asked Questions",
 
     "q1": "Do I need WhatsApp Business API?",
@@ -100,11 +103,11 @@
     "q3": "Can I manage multiple numbers/agents?",
     "a3": "Yes. You can connect multiple WhatsApp numbers and allow multiple team members to manage conversations from a shared dashboard."
   },
-    "footer": {
-      "product": "Product",
-      "info": "Info",
-      "contact": "Contact",
-      "productLinks": {
+  "footer": {
+    "product": "Product",
+    "info": "Info",
+    "contact": "Contact",
+    "productLinks": {
       "feature": "Feature",
       "apiintegration": "API Integration",
       "pricing": "Pricing",

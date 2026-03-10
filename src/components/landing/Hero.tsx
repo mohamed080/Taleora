@@ -124,7 +124,7 @@ export function Hero() {
             </Button>
             <div className="flex items-center gap-1.5">
               <Image
-                src="/images/protect.svg"
+                src="/images/Protect.svg"
                 alt="Protect Shield image"
                 width={20}
                 height={20}

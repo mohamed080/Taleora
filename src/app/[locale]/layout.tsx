@@ -7,7 +7,7 @@ import { hasLocale } from "next-intl";
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
 import { getMessages } from "next-intl/server";
-import { Footer, Header } from "@/components/landing";
+import { Footer, Header, SectionDividerSm } from "@/components/landing";
 
 const montserrat = Montserrat({
   variable: "--font-montserrat",
@@ -62,7 +62,8 @@ export default async function RootLayout({
       >
         <NextIntlClientProvider messages={messages}>
           <Header />
-            {children}
+          {children}
+          <SectionDividerSm />
           <Footer />
         </NextIntlClientProvider>
       </body>

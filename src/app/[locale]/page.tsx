@@ -7,16 +7,14 @@ import {
   KidSection,
   CareerAdventure,
   FaqSection,
-  SectionDividerSm,
 } from "@/components/landing";
-
 
 export default function Home() {
   return (
     <div className="min-h-screen bg-[#FFFEFC]">
       <main>
         <Hero />
-         <MagicWorks />
+        <MagicWorks />
         <TopRatedBooks />
         <SectionDivider />
         <PrincessSection />
@@ -24,7 +22,6 @@ export default function Home() {
         <SectionDivider />
         <CareerAdventure />
         <FaqSection />
-        <SectionDividerSm />
       </main>
     </div>
   );

@@ -126,7 +126,7 @@ export function KidSection() {
                             {t(`${slide.key}.title`)}
                           </h4>
                           <p className="text-xs sm:text-base text-gray font-medium mb-3 line-clamp-2 sm:line-clamp-none">
-                            {t(`${slide.key}.description`)}
+                            {t(`${slide.key}.subtitle`)}
                           </p>
                           <div className="flex items-center flex-wrap gap-2 mb-3">
                             <div
