@@ -37,8 +37,12 @@
     }
   },
   "books": {
-    "title": "أفضل الكتب لهذا الشهر",
-    "subtitle": "القصص التي لا يمكن للأطفال والآباء التوقف عن الحديث عنها.",
+    "title": "الأكثر مبيعاً هذا الشهر",
+    "subtitle": "القصص التي لا يتوقف الأطفال والآباء عن الحديث عنها.",
+    "browseBooks": {
+      "title": "المكتبة",
+      "subtitle": "ابحث عن المغامرة الشخصية المثالية."
+    },
     "princess": {
       "title": "كتب ل",
       "highlight": "الأميرة الصغيرة",
@@ -101,17 +105,52 @@
       "previewSwipe": "اسحب لليسار/اليمين أو استخدم الأسهم لتغيير العرض.",
       "previewCover": "الغلاف",
       "previewPage": "الصفحة",
-      "previewEmpty": "املأ تفاصيل طفلك لرؤية معاينة الكتاب"
+      "previewEmpty": "املأ تفاصيل طفلك لرؤية معاينة الكتاب",
+      "addedToast": "تمت الإضافة إلى السلة!",
+      "updatedToast": "تم تحديث عنصر السلة."
     },
     "cart": {
+      "title": "سلة التسوق",
+      "couponCode": "كود الخصم",
+      "enterCode": "أدخل الكود",
+      "apply": "تطبيق",
       "emptyTitle": "سلة التسوق فارغة",
       "emptyDescription": "أضف كتابًا أولاً لإنشاء ملخص الطلب.",
       "browse": "تصفح الكتب",
       "orderSummary": "ملخص الطلب",
       "continueShopping": "متابعة التسوق",
-      "total": "المجموع",
       "unnamed": "بدون اسم",
-      "bookId": "معرّف الكتاب"
+      "bookId": "معرّف الكتاب: {id}",
+      "subtotal": "المجموع ({count, plural, one {# عنصر} other {# عناصر}})",
+      "orderTotal": "إجمالي الطلب",
+      "imageAlt": "صورة الكتاب المصغرة",
+      "childNameLabel": "اسم الطفل",
+      "coverTypeLabel": "نوع الغلاف",
+      "none": "لا شيء",
+      "loading": "جارٍ تحميل السلة...",
+      "confirmDeleteTitle": "إزالة عنصر",
+      "confirmDeleteBody": "هل تريد بالتأكيد إزالة \"{title}\" من سلة التسوق؟",
+      "cancel": "إلغاء",
+      "delete": "حذف",
+      "deleteItemAlt": "حذف {title}",
+      "deletedToast": "تمت إزالة \"{title}\" من السلة.",
+      "checkout": "الذهاب لملخص الطلب"
+    },
+    "checkout": {
+      "shippingFee": "مصاريف الشحن",
+      "confirm": "تأكيد الشراء",
+      "shippingInfo": "معلومات الشحن",
+      "fullName": "الاسم الكامل",
+      "fullNamePlaceholder": "الاسم الكامل",
+      "phoneNumber": "رقم الهاتف",
+      "phoneNumberPlaceholder": "+20 11 2345 678",
+      "detailedAddress": "العنوان بالتفصيل",
+      "detailedAddressPlaceholder": "الشارع، رقم المبنى، رقم الشقة",
+      "city": "المدينة",
+      "cityPlaceholder": "المنصورة",
+      "postalCode": "الرمز البريدي",
+      "postalCodePlaceholder": "12345",
+      "private": "100% خصيصة ومحمية"
     }
   },
   "careerAdventure": {

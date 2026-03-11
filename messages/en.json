@@ -40,6 +40,10 @@
   "books": {
     "title": "This Month Bestsellers",
     "subtitle": "The stories kids and parents can't stop talking about.",
+    "browseBooks": {
+      "title": "Our Bookstore",
+      "subtitle": "Find the perfect personalized adventure."
+    },
     "princess": {
       "title": "Books for your",
       "highlight": "little princess",
@@ -101,17 +105,52 @@
       "previewSwipe": "Swipe left/right or use the arrows to change the view.",
       "previewCover": "Cover",
       "previewPage": "Page",
-      "previewEmpty": "Fill your kid details to see the book preview"
+      "previewEmpty": "Fill your kid details to see the book preview",
+      "addedToast": "Added to cart!",
+      "updatedToast": "Updated cart item."
     },
     "cart": {
+      "title": "Your Cart",
+      "couponCode": "Coupon Code",
+      "enterCode": "Enter code",
+      "apply": "Apply",
       "emptyTitle": "Your cart is empty",
       "emptyDescription": "Add a book first to create an order summary.",
       "browse": "Browse books",
       "orderSummary": "Order Summary",
       "continueShopping": "Continue shopping",
-      "total": "Total",
       "unnamed": "Unnamed",
-      "bookId": "Book ID"
+      "bookId": "Book ID: {id}",
+      "subtotal": "Subtotal ({count, plural, one {# item} other {# items}})",
+      "orderTotal": "Order Total",
+      "imageAlt": "Book thumbnail",
+      "childNameLabel": "Child’s Name",
+      "coverTypeLabel": "Cover Type",
+      "none": "None",
+      "loading": "Loading cart…",
+      "confirmDeleteTitle": "Remove item",
+      "confirmDeleteBody": "Are you sure you want to remove “{title}” from your cart?",
+      "cancel": "Cancel",
+      "delete": "Delete",
+      "deleteItemAlt": "Delete {title}",
+      "deletedToast": "Removed “{title}” from your cart.",
+      "checkout": "Go to order details"
+    },
+    "checkout": {
+      "shippingFee": "Shipping Fee",
+      "confirm": "Confirm Purchase",
+      "shippingInfo": "Shipping Information",
+      "fullName": "Full Name",
+      "fullNamePlaceholder": "Full Name",
+      "phoneNumber": "Phone Number",
+      "phoneNumberPlaceholder": "+20 11 2345 678",
+      "detailedAddress": "Detailed Address",
+      "detailedAddressPlaceholder": "Street, Building Number, Apt Number",
+      "city": "City",
+      "cityPlaceholder": "Mansoura",
+      "postalCode": "Postal Code",
+      "postalCodePlaceholder": "12345",
+      "private": "100% Private & Secure"
     }
   },
   "careerAdventure": {

@@ -1,84 +1,206 @@
-"use client"
+"use client";
 
-import Link from "next/link"
-import { useEffect, useMemo, useState } from "react"
-import { useParams } from "next/navigation"
-import { useTranslations } from "next-intl"
+import Link from "next/link";
+import { useEffect, useMemo, useState } from "react";
+import { useParams, useRouter } from "next/navigation";
+import { useTranslations } from "next-intl";
+import { Button } from "@/components/ui/button";
+import { toast } from "sonner";
+import { motion, AnimatePresence } from "framer-motion";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "@/components/ui/alert-dialog";
+import {
+  CartSkeleton,
+  EmptyCart,
+  CartItemCard,
+  OrderSummary,
+  pageVariants,
+  colVariants,
+} from "./components";
 
+// ── Imported Store ──────────────────────────────────────────────────────────
+import { useCartStore } from "@/store/useCartStore";
+
+// ── Page ────────────────────────────────────────────────────────────────────
 export default function Page() {
-  const params = useParams() as { locale?: string }
-  const locale = params?.locale ?? "en"
-  const t = useTranslations("books")
-  const [cart, setCart] = useState<any[]>([])
+  const params = useParams() as { locale?: string };
+  const locale = params?.locale ?? "en";
+  const router = useRouter();
+  const t = useTranslations("books");
+  const [couponCode, setCouponCode] = useState("");
+  const [itemToDelete, setItemToDelete] = useState<null | {
+    index: number;
+    title: string;
+  }>(null);
+
+  // ── Fix: initialise directly from localStorage, no useEffect / isLoading ─
+  // SSR returns [] (window is undefined); client hydrates with real data.
+  const [mounted, setMounted] = useState(false);
+  const cart = useCartStore((state) => state.items);
+  const removeFromCart = useCartStore((state) => state.removeFromCart);
 
   useEffect(() => {
-    const stored = localStorage.getItem("taleora_cart")
-    if (stored) {
-      try {
-        setCart(JSON.parse(stored))
-      } catch {
-        setCart([])
-      }
+    setMounted(true); // single re-render on mount
+  }, []);
+
+  const total = useCartStore((state) => state.getSubtotal());
+  const itemCount = cart.length;
+
+  // ── Handlers ───────────────────────────────────────────────────────────────
+  const handleDelete = (index: number) => {
+    const item = cart[index];
+    setItemToDelete({
+      index,
+      title:
+        (item?.bookKey && t(`${item.bookKey}.title`)) ||
+        item?.bookTitle ||
+        t("cart.bookId", { id: item?.bookId ?? "?" }),
+    });
+  };
+
+  const handleConfirmDelete = () => {
+    if (!itemToDelete) return;
+    const item = cart[itemToDelete.index];
+    if (item && item.date) {
+      removeFromCart(item.date);
+      toast.success(t("cart.deletedToast", { title: itemToDelete.title }));
     }
-  }, [])
+    setItemToDelete(null);
+  };
 
-  const total = useMemo(
-    () => cart.reduce((sum, item) => sum + (item.totalPrice ?? 0), 0),
-    [cart]
-  )
+  const handleEdit = (index: number) => {
+    const item = cart[index];
+    if (!item) return;
+    localStorage.setItem(
+      "taleora_cart_edit",
+      JSON.stringify({ ...item, cartIndex: index }),
+    );
+    router.push(`/${locale}/books/${item.bookId}/customize`);
+  };
 
-  if (!cart.length) {
-    return (
-      <section className="px-4 py-20">
-        <div className="mx-auto max-w-6xl text-center">
-          <h1 className="text-3xl font-bold mb-4">{t("cart.emptyTitle")}</h1>
-          <p className="text-gray mb-6">{t("cart.emptyDescription")}</p>
-          <Link
-            href={`/${locale}/books`}
-            className="inline-flex rounded-lg bg-primary px-6 py-3 text-white"
-          >
-            {t("cart.browse")}
-          </Link>
-        </div>
-      </section>
-    )
-  }
+  // ── Render ─────────────────────────────────────────────────────────────────
+  if (!mounted) return <CartSkeleton />;
+  if (!itemCount) return <EmptyCart locale={locale} t={t} />;
 
   return (
-    <section className="px-4 py-20">
+    <motion.section
+      className="px-4 py-14 sm:py-20"
+      variants={pageVariants}
+      initial="hidden"
+      animate="visible"
+    >
       <div className="mx-auto max-w-6xl">
-        <h1 className="text-3xl font-bold mb-6">{t("cart.orderSummary")}</h1>
-
-        <div className="space-y-6">
-          {cart.map((item, idx) => (
-            <div key={idx} className="rounded-3xl border border-muted p-6">
-              <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
-                <div>
-                  <p className="text-lg font-semibold">{item.name || t("cart.unnamed")}</p>
-                  <p className="text-sm text-gray">{t("cart.bookId")}: {item.bookId}</p>
-                  <p className="text-sm text-gray">{t("cart.total")}: EGP {item.totalPrice}</p>
-                </div>
-
-                <div className="flex gap-2">
-                  <Link
-                    href={`/${locale}/books`}
-                    className="inline-flex items-center rounded-lg bg-muted px-4 py-2 text-sm"
-                  >
-                    {t("cart.continueShopping")}
-                  </Link>
-                </div>
-              </div>
+        <motion.div
+          className="grid gap-7 lg:grid-cols-[60%_40%] items-start"
+          variants={pageVariants}
+        >
+          {/* Left — cart items */}
+          <motion.div
+            className="space-y-6 rounded-3xl border border-[#F4F4F4] p-4 sm:p-8 shadow-md"
+            variants={colVariants}
+          >
+            {/* Header */}
+            <div className="flex flex-wrap items-center gap-3 justify-between">
+              <h4 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-foreground">
+                {t("cart.title")}
+              </h4>
+              <Button
+                asChild
+                variant="default"
+                size="lg"
+                className="px-4 h-10 text-sm"
+              >
+                <Link href={`/${locale}/books`}>
+                  {t("cart.continueShopping")}
+                </Link>
+              </Button>
             </div>
-          ))}
 
-          <div className="rounded-3xl border border-muted p-6">
-            <div className="flex items-center justify-between">
-              <span className="text-lg font-semibold">{t("cart.total")}</span>
-              <span className="text-lg font-bold">EGP {total}</span>
-            </div>
-          </div>
-        </div>
+            <span className="inline-flex w-full border-b-2 border-[#F2F2F2]" />
+
+            {/* Items */}
+            <motion.div className="space-y-5" variants={pageVariants}>
+              <AnimatePresence initial={false}>
+                {cart.map((item, index) => (
+                  <CartItemCard
+                    key={item.date ?? index}
+                    item={item}
+                    index={index}
+                    locale={locale}
+                    t={t}
+                    onEdit={handleEdit}
+                    onDelete={handleDelete}
+                  />
+                ))}
+              </AnimatePresence>
+            </motion.div>
+          </motion.div>
+
+          {/* Right — order summary */}
+          <OrderSummary
+            total={total}
+            itemCount={itemCount}
+            couponCode={couponCode}
+            setCouponCode={setCouponCode}
+            t={t}
+            locale={locale}
+          />
+        </motion.div>
       </div>
-    </section>
-  )
+
+      {/* Delete confirmation dialog */}
+      <AnimatePresence>
+        {itemToDelete && (
+          <AlertDialog
+            open={Boolean(itemToDelete)}
+            onOpenChange={(open) => {
+              if (!open) setItemToDelete(null);
+            }}
+          >
+            <AlertDialogContent asChild>
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9, y: 20 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.9, y: 20 }}
+                transition={{ duration: 0.25, ease: "easeOut" }}
+              >
+                <AlertDialogHeader>
+                  <AlertDialogTitle className="font-montserrat!">
+                    {t("cart.confirmDeleteTitle")}
+                  </AlertDialogTitle>
+
+                  <AlertDialogDescription>
+                    {t("cart.confirmDeleteBody", {
+                      title: itemToDelete?.title ?? "",
+                    })}
+                  </AlertDialogDescription>
+                </AlertDialogHeader>
+
+                <AlertDialogFooter>
+                  <AlertDialogCancel onClick={() => setItemToDelete(null)}>
+                    {t("cart.cancel")}
+                  </AlertDialogCancel>
+
+                  <AlertDialogAction
+                    onClick={handleConfirmDelete}
+                    variant="destructive"
+                  >
+                    {t("cart.delete")}
+                  </AlertDialogAction>
+                </AlertDialogFooter>
+              </motion.div>
+            </AlertDialogContent>
+          </AlertDialog>
+        )}
+      </AnimatePresence>
+    </motion.section>
+  );
 }

@@ -8,6 +8,7 @@ import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
 import { getMessages } from "next-intl/server";
 import { Footer, Header, SectionDividerSm } from "@/components/landing";
+import { Toaster } from "@/components/ui/sonner";
 
 const montserrat = Montserrat({
   variable: "--font-montserrat",
@@ -65,6 +66,7 @@ export default async function RootLayout({
           {children}
           <SectionDividerSm />
           <Footer />
+          <Toaster />
         </NextIntlClientProvider>
       </body>
     </html>

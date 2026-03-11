@@ -6,9 +6,12 @@ import { useLocale, useTranslations } from "next-intl";
 import Image from "next/image";
 import { useState } from "react";
 import { RiGlobalFill } from "react-icons/ri";
+import { FaShoppingCart } from "react-icons/fa";
 import { Button } from "../ui/button";
 import { navLinks } from "@/constants/enums";
 import { motion, AnimatePresence, Variants } from "framer-motion";
+import { useCartStore } from "@/store/useCartStore";
+import { useEffect } from "react";
 
 export function Header() {
   const t = useTranslations("header");
@@ -16,6 +19,14 @@ export function Header() {
   const pathname = usePathname();
   const otherLocale = locale === "ar" ? "en" : "ar";
   const [menuOpen, setMenuOpen] = useState(false);
+
+  // Cart State hydration
+  const [mounted, setMounted] = useState(false);
+  const cartCount = useCartStore((state) => state.items.length);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const localePath = pathname?.replace(`/${locale}`, "") || "";
   const switchHref = `/${otherLocale}${localePath}`;
@@ -96,6 +107,22 @@ export function Header() {
                 <Link href={`/${locale}/signup`}>{t("signup")}</Link>
               </Button>
             </div>
+
+            {/* Cart Icon */}
+            <Link href={`/${locale}/cart`} className="relative text-secondary hover:text-primary transition-colors flex items-center h-full">
+              <FaShoppingCart size={22} />
+              {mounted && cartCount > 0 && (
+                <motion.span
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  key={cartCount}
+                  className="absolute -top-2 -right-2 flex h-5 w-5 items-center justify-center rounded-full bg-primary text-[10px] font-bold text-white shadow-sm"
+                >
+                  {cartCount}
+                </motion.span>
+              )}
+            </Link>
+
             <Button asChild variant="link" size="lg">
               <Link href={switchHref}>
                 {otherLocale.toUpperCase()}
@@ -106,6 +133,22 @@ export function Header() {
 
           {/* Mobile: Lang switcher + Hamburger */}
           <div className="flex md:hidden items-center gap-2">
+            
+            {/* Mobile Cart Icon */}
+            <Link href={`/${locale}/cart`} className="relative mr-1 text-secondary hover:text-primary transition-colors flex items-center h-full">
+              <FaShoppingCart size={22} />
+              {mounted && cartCount > 0 && (
+                <motion.span
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  key={cartCount}
+                  className="absolute -top-2 -right-2 flex h-5 w-5 items-center justify-center rounded-full bg-primary text-[10px] font-bold text-white shadow-sm"
+                >
+                  {cartCount}
+                </motion.span>
+              )}
+            </Link>
+
             <Button asChild variant="link" size="lg">
               <Link href={switchHref}>
                 {otherLocale.toUpperCase()}
