@@ -204,5 +204,8 @@
       "phone2": "+1 987 65 432"
     },
     "copyright": " Copyright | All Rights Reserved"
+  },
+  "loading": {
+    "tagline": "Every story starts with a name."
   }
 }

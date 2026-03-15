@@ -41,6 +41,8 @@ export const metadata: Metadata = {
   description: "A playful, component-based Taleora landing page scaffold.",
 };
 
+import { SplashWrapper } from "@/components/ui/SplashWrapper";
+
 export default async function RootLayout({
   children,
   params,
@@ -62,11 +64,13 @@ export default async function RootLayout({
         className={`${montserrat.variable} ${theSeasons.variable} antialiased`}
       >
         <NextIntlClientProvider messages={messages}>
-          <Header />
-          {children}
-          <SectionDividerSm />
-          <Footer />
-          <Toaster />
+          <SplashWrapper>
+            <Header />
+            {children}
+            <SectionDividerSm />
+            <Footer />
+            <Toaster />
+          </SplashWrapper>
         </NextIntlClientProvider>
       </body>
     </html>
