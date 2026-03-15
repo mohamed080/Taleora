@@ -1,15 +1,18 @@
 import Image from "next/image";
+import { FadeIn } from "../ui/animations";
 
 export function SectionDivider() {
   return (
-    <Image
-      src="/images/section-divider.png"
-      alt="Section Divider"
-      width={1535}
-      height={66}
-      draggable={false}
-      className="w-full h-8 sm:h-10 md:h-13 lg:h-15"
-    />
+    <FadeIn margin="-20px">
+      <Image
+        src="/images/section-divider.png"
+        alt="Section Divider"
+        width={1535}
+        height={66}
+        draggable={false}
+        className="w-full h-8 sm:h-10 md:h-13 lg:h-15"
+      />
+    </FadeIn>
   );
 }
 

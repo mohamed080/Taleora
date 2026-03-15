@@ -11,24 +11,7 @@ import "keen-slider/keen-slider.min.css";
 import Link from "next/link";
 import { useInView, motion } from "framer-motion";
 import { books } from "@/lib/books";
-
-const fadeUp = {
-  hidden: { opacity: 0, y: 40 },
-  visible: (i = 0) => ({
-    opacity: 1,
-    y: 0,
-    transition: { delay: i * 0.15, duration: 0.6, ease: [0.22, 1, 0.36, 1] as const },
-  }),
-};
-
-const slideIn = (direction: "left" | "right") => ({
-  hidden: { opacity: 0, x: direction === "right" ? 60 : -60 },
-  visible: {
-    opacity: 1,
-    x: 0,
-    transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] as const, delay: 0.3 },
-  },
-});
+import { FadeIn, SlideUp, EASE_OUT } from "../ui/animations";
 
 export function TopRatedBooks() {
   const t = useTranslations("books");
@@ -60,12 +43,7 @@ export function TopRatedBooks() {
   return (
     <section ref={sectionRef} className="text-center px-4 overflow-hidden">
       {/* Badge */}
-      <motion.div
-        variants={fadeUp}
-        initial="hidden"
-        animate={isInView ? "visible" : "hidden"}
-        custom={0}
-      >
+      <SlideUp delay={0} margin="-80px">
         <Button
           variant="link"
           size="lg"
@@ -74,39 +52,21 @@ export function TopRatedBooks() {
           <IoMdTrophy />
           {t("title")}
         </Button>
-      </motion.div>
+      </SlideUp>
       {/* Heading */}
-      <motion.h1
-        variants={fadeUp}
-        initial="hidden"
-        animate={isInView ? "visible" : "hidden"}
-        custom={1}
-        className="text-3xl sm:text-4xl font-bold text-accent text-center"
-      >
-        {t("title")}
-      </motion.h1>
+      <SlideUp delay={0.15} margin="-80px" className="text-3xl sm:text-4xl font-bold text-accent text-center">
+        <h1>{t("title")}</h1>
+      </SlideUp>
       {/* Subtitle */}
-      <motion.p
-        variants={fadeUp}
-        initial="hidden"
-        animate={isInView ? "visible" : "hidden"}
-        custom={2}
-        className="text-gray font-medium text-lg sm:text-xl mb-5 text-center"
-      >
-        {t("subtitle")}
-      </motion.p>
+      <SlideUp delay={0.3} margin="-80px" className="text-gray font-medium text-lg sm:text-xl mb-5 text-center">
+        <p>{t("subtitle")}</p>
+      </SlideUp>
 
       <div className="relative max-w-7xl mx-auto mb-18">
         <div className="grid grid-cols-1 lg:grid-cols-2 items-center">
           {/* Slider */}
 
-          <motion.div
-            variants={fadeUp}
-            initial="hidden"
-            animate={isInView ? "visible" : "hidden"}
-            custom={3}
-            className="relative w-full"
-          >
+          <SlideUp delay={0.45} margin="-80px" className="relative w-full">
             {/* Prev arrow */}
 
             <button
@@ -235,12 +195,12 @@ export function TopRatedBooks() {
                 />
               ))}
             </div>
-          </motion.div>
+          </SlideUp>
           {/* Side image */}
           <motion.div
-            variants={slideIn(isRTL ? "left" : "right")}
-            initial="hidden"
-            animate={isInView ? "visible" : "hidden"}
+            initial={{ opacity: 0, x: isRTL ? -60 : 60 }}
+            animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: isRTL ? -60 : 60 }}
+            transition={{ duration: 0.8, ease: EASE_OUT, delay: 0.3 }}
             className={`w-full flex justify-center mt-5! lg:mt-0 max-w-75 sm:max-w-95 md:max-w-none ${isRTL ? "lg:mr-auto" : "lg:ml-auto"}`}
           >
             <Image

@@ -3,22 +3,14 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
-
-const fadeUp = {
-  hidden: { opacity: 0, y: 40 },
-  visible: (i = 0) => ({
-    opacity: 1,
-    y: 0,
-    transition: { delay: i * 0.15, duration: 0.6, ease: [0.22, 1, 0.36, 1] as const },
-  }),
-};
+import { SlideUp, EASE_OUT } from "../ui/animations";
 
 const scaleIn = {
   hidden: { opacity: 0, scale: 0.7 },
   visible: (i = 0) => ({
     opacity: 1,
     scale: 1,
-    transition: { delay: i * 0.12 + 0.3, duration: 0.5, ease: [0.22, 1, 0.36, 1] as const },
+    transition: { delay: i * 0.12 + 0.3, duration: 0.5, ease: EASE_OUT },
   }),
 };
 
@@ -85,13 +77,10 @@ export function CareerAdventureDesktop({ careers }: { careers: Career[] }) {
       {/* Careers row */}
       <div className="flex w-full justify-around items-start px-4 relative">
         {careers.map((career, i) => (
-          <motion.div
+          <SlideUp
             key={career.key}
-            variants={fadeUp}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-80px" }}
-            custom={i}
+            delay={i * 0.15}
+            margin="-80px"
             whileHover={{ y: -6, transition: { duration: 0.25 } }}
             className={`flex flex-col items-center gap-2 ${
               i === 1 || i === 2 ? "mt-20" : ""
@@ -117,7 +106,7 @@ export function CareerAdventureDesktop({ careers }: { careers: Career[] }) {
             <p className="text-center text-xl font-bold text-black">
               {career.label}
             </p>
-          </motion.div>
+          </SlideUp>
         ))}
       </div>
     </div>
@@ -150,13 +139,10 @@ export function CareerAdventureMobile({ careers }: { careers: Career[] }) {
 
       {/* Career cards */}
       {careers.map((career, i) => (
-        <motion.div
+        <SlideUp
           key={career.key}
-          variants={fadeUp}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-60px" }}
-          custom={i}
+          delay={i * 0.15}
+          margin="-60px"
           className="flex flex-col items-center gap-2"
         >
           <div className="rounded-full border-[6px] border-[#FFB24B] bg-white">
@@ -172,7 +158,7 @@ export function CareerAdventureMobile({ careers }: { careers: Career[] }) {
           <p className="text-center text-lg font-bold text-black">
             {career.label}
           </p>
-        </motion.div>
+        </SlideUp>
       ))}
     </div>
   );

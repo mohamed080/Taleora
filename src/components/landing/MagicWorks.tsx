@@ -2,37 +2,9 @@
 
 import { useLocale, useTranslations } from "next-intl";
 import Image from "next/image";
-import { motion } from "framer-motion";
-import { useInView } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-
-const fadeUp = {
-  hidden: { opacity: 0, y: 40 },
-  visible: (i = 0) => ({
-    opacity: 1,
-    y: 0,
-    transition: { delay: i * 0.15, duration: 0.6, ease: [0.22, 1, 0.36, 1] as const },
-  }),
-};
-
-const slideIn = (direction: "left" | "right") => ({
-  hidden: { opacity: 0, x: direction === "right" ? 60 : -60 },
-  visible: {
-    opacity: 1,
-    x: 0,
-    transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] as const, delay: 0.2 },
-  },
-});
-
-const cardVariants = {
-  hidden: { opacity: 0, y: 50, scale: 0.95 },
-  visible: (i: number) => ({
-    opacity: 1,
-    y: 0,
-    scale: 1,
-    transition: { delay: i * 0.15 + 0.3, duration: 0.55, ease: [0.22, 1, 0.36, 1] as const },
-  }),
-};
+import { FadeIn, SlideUp, StaggerContainer, StaggerItem, EASE_OUT } from "../ui/animations";
 
 export function MagicWorks() {
   const t = useTranslations("magicWorks");
@@ -72,9 +44,9 @@ export function MagicWorks() {
         
         {/* Image column */}
         <motion.div
-          variants={slideIn(isRtl ? "right" : "left")}
-          initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
+          initial={{ opacity: 0, x: isRtl ? 60 : -60 }}
+          animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: isRtl ? 60 : -60 }}
+          transition={{ duration: 0.8, ease: EASE_OUT, delay: 0.2 }}
           className={`order-1 md:col-span-3 flex justify-center ${isRtl ? "md:order-2" : ""}`}
         >
           <div className="w-full max-w-75 sm:max-w-85 md:max-w-none">
@@ -106,43 +78,37 @@ export function MagicWorks() {
           </div>
 
           {/* Heading */}
-          <motion.h1
-            variants={fadeUp}
-            initial="hidden"
-            animate={isInView ? "visible" : "hidden"}
-            custom={0}
+          <SlideUp
+            delay={0}
             className="text-3xl sm:text-4xl font-bold text-accent text-center"
           >
-            {t("title")}
-          </motion.h1>
+            <h1>{t("title")}</h1>
+          </SlideUp>
 
-          <motion.p
-            variants={fadeUp}
-            initial="hidden"
-            animate={isInView ? "visible" : "hidden"}
-            custom={1}
+          <SlideUp
+            delay={0.15}
             className="text-gray font-medium text-lg sm:text-xl mb-10 md:mb-16 text-center"
           >
-            {t("subtitle")}
-          </motion.p>
+            <p>{t("subtitle")}</p>
+          </SlideUp>
 
           {/* Steps grid */}
-          <div className="grid gap-4 grid-cols-1 sm:grid-cols-3">
+          <StaggerContainer
+            delayChildren={0.3}
+            staggerChildren={0.15}
+            className="grid gap-4 grid-cols-1 sm:grid-cols-3"
+          >
             {steps.map((step, i) => (
-              <motion.div
+              <StaggerItem
                 key={step.title}
-                custom={i}
-                variants={cardVariants}
-                initial="hidden"
-                animate={isInView ? "visible" : "hidden"}
-                whileHover={{  transition: { duration: 0.25 } }}
                 className="flex flex-col items-center gap-6 py-8 px-4"
               >
                 <motion.div
                   initial={{ rotate: 0 }}
                   animate={isInView ? { rotate: 12 } : { rotate: 0 }}
                   transition={{ delay: i * 0.15 + 0.5, duration: 0.5, ease: "easeOut" }}
-                  className={`rounded-md w-20 h-20 flex items-center justify-center ${step.bg}`}
+                  whileHover={{ scale: 1.05, transition: { duration: 0.2 } }}
+                  className={`rounded-md w-20 h-20 flex items-center justify-center ${step.bg} cursor-pointer`}
                 >
                   <Image
                     src={step.icon}
@@ -160,9 +126,9 @@ export function MagicWorks() {
                     {step.description}
                   </p>
                 </div>
-              </motion.div>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerContainer>
         </div>
       </div>
     </section>

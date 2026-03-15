@@ -7,12 +7,11 @@ import { toast } from "sonner";
 import type { Book } from "@/lib/books";
 import { motion, useReducedMotion, AnimatePresence } from "framer-motion";
 import {
-  sectionVariants,
-  cardVariants,
   CustomizationForm,
   BookPreviewSlider,
 } from "./customize";
 import { useCartStore } from "@/store/useCartStore";
+import { SlideUp, StaggerContainer, StaggerItem } from "@/components/ui/animations";
 
 type BookCustomizeProps = {
   book: Book;
@@ -177,24 +176,17 @@ export function BookCustomize({ book, locale }: BookCustomizeProps) {
 
   const isComplete = !!childName && !!photoFile && !!coverType;
 
-  // Disable motion variants if user prefers reduced motion
-  const motionProps = shouldReduceMotion
-    ? {}
-    : { variants: sectionVariants, initial: "hidden", animate: "visible" };
-
   return (
-    <motion.section className="px-4 py-14 sm:py-20" {...motionProps}>
+    <section className="px-4 py-14 sm:py-20">
       <div className="mx-auto max-w-6xl">
-        <motion.div
+        <StaggerContainer
           className="grid gap-10 md:grid-cols-2 items-start"
-          variants={sectionVariants}
-          initial="hidden"
-          animate="visible"
+          staggerChildren={0.1}
+          delayChildren={0.05}
         >
           {/* Left: Customization form */}
-          <motion.div
-            className="space-y-6 rounded-3xl border border-[#F4F4F4] p-8 shadow-md "
-            variants={cardVariants}
+          <StaggerItem
+            className="space-y-6 rounded-3xl border border-[#F4F4F4] p-8 shadow-md"
           >
             <CustomizationForm
               bookKey={book.key}
@@ -212,12 +204,11 @@ export function BookCustomize({ book, locale }: BookCustomizeProps) {
               addToCart={addToCart}
               t={t}
             />
-          </motion.div>
+          </StaggerItem>
 
           {/* Right: Preview Slider */}
-          <motion.div
+          <StaggerItem
             className="space-y-4 md:sticky md:top-24"
-            variants={cardVariants}
           >
             <AnimatePresence>
               {photoPreview && (
@@ -241,9 +232,9 @@ export function BookCustomize({ book, locale }: BookCustomizeProps) {
               goToSlide={goToSlide}
               t={t}
             />
-          </motion.div>
-        </motion.div>
+          </StaggerItem>
+        </StaggerContainer>
       </div>
-    </motion.section>
+    </section>
   );
 }

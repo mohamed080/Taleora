@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { FaTrash } from "react-icons/fa";
 import { useTranslations } from "next-intl";
 import { getBookById } from "@/lib/books";
-import { rowVariants } from "./cart-animations";
+import { StaggerItem } from "@/components/ui/animations";
 
 export function CartItemCard({
   item,
@@ -47,9 +47,8 @@ export function CartItemCard({
         : t("cart.none");
 
   return (
-    <motion.div
+    <StaggerItem
       layout
-      variants={rowVariants}
       exit="exit"
       className="rounded-3xl shadow-xl border border-muted p-5 sm:p-6"
     >
@@ -123,6 +122,6 @@ export function CartItemCard({
           <FaTrash />
         </motion.button>
       </div>
-    </motion.div>
+    </StaggerItem>
   );
 }

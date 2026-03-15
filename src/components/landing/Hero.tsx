@@ -4,33 +4,8 @@ import { useLocale, useTranslations } from "next-intl";
 import Image from "next/image";
 import { Button } from "../ui/button";
 import Link from "next/link";
-import { motion, Variants } from "framer-motion";
-
-const fadeUp: Variants = {
-  hidden: { opacity: 0, y: 30 },
-  visible: (i = 0) => ({
-    opacity: 1,
-    y: 0,
-    transition: { delay: i * 0.15, duration: 0.6, ease: [0.22, 1, 0.36, 1] as const },
-  }),
-};
-
-const fadeIn: Variants = {
-  hidden: { opacity: 0 },
-  visible: (i = 0) => ({
-    opacity: 1,
-    transition: { delay: i * 0.15, duration: 0.7, ease: "easeOut" },
-  }),
-};
-
-const slideIn = (direction: "left" | "right") => ({
-  hidden: { opacity: 0, x: direction === "right" ? 60 : -60 },
-  visible: {
-    opacity: 1,
-    x: 0,
-    transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] as const, delay: 0.3 },
-  },
-});
+import { motion } from "framer-motion";
+import { FadeIn, SlideUp, EASE_OUT } from "../ui/animations";
 
 export function Hero() {
   const t = useTranslations("hero");
@@ -40,11 +15,9 @@ export function Hero() {
   return (
     <section className="relative bg-[#fff3df] min-h-[calc(100vh-68px)] flex items-center">
       {/* Shape top right */}
-      <motion.div
-        variants={fadeIn}
-        initial="hidden"
-        animate="visible"
-        custom={0}
+      <FadeIn
+        delay={0}
+        duration={0.7}
         className="absolute -top-8 right-0 pointer-events-none"
       >
         <Image
@@ -56,14 +29,12 @@ export function Hero() {
           draggable={false}
           className="object-contain w-30 md:w-45 lg:w-55"
         />
-      </motion.div>
+      </FadeIn>
 
       {/* Shape bottom left */}
-      <motion.div
-        variants={fadeIn}
-        initial="hidden"
-        animate="visible"
-        custom={0}
+      <FadeIn
+        delay={0}
+        duration={0.7}
         className="absolute bottom-0 left-0 pointer-events-none"
       >
         <Image
@@ -75,16 +46,14 @@ export function Hero() {
           draggable={false}
           className="object-contain w-17.5 md:w-25 lg:w-30"
         />
-      </motion.div>
+      </FadeIn>
 
       <div className="mx-auto grid max-w-7xl gap-8 px-4 py-12 md:grid-cols-2 md:items-center md:px-8 md:py-16">
         {/* Left / Text content */}
         <div className="flex flex-col items-center text-center md:items-start md:text-start z-10">
-          <motion.div
-            variants={fadeUp}
-            initial="hidden"
-            animate="visible"
-            custom={0}
+          <SlideUp
+            delay={0}
+            duration={0.6}
             className="mb-4 w-full max-w-85 sm:max-w-105 md:max-w-130 lg:max-w-145"
           >
             <Image
@@ -96,28 +65,27 @@ export function Hero() {
               priority
               className="w-full h-auto"
             />
-          </motion.div>
-          <motion.h1
-            variants={fadeUp}
-            initial="hidden"
-            animate="visible"
-            custom={1}
-          className="text-base leading-snug text-accent sm:text-lg md:text-[22px] lg:text-[26px] max-w-120">
-            {t.rich("title", {
-              hero: (chunks) => (
-                <span className="bg-[linear-gradient(132.78deg,#FF6DCA_37.86%,#FFB24B_86.43%)] bg-clip-text text-transparent">
-                  {chunks}
-                </span>
-              ),
-            })}
-          </motion.h1>
+          </SlideUp>
+          <SlideUp
+            delay={0.15}
+            duration={0.6}
+            className="text-base leading-snug text-accent sm:text-lg md:text-[22px] lg:text-[26px] max-w-120"
+          >
+            <h1>
+              {t.rich("title", {
+                hero: (chunks) => (
+                  <span className="bg-[linear-gradient(132.78deg,#FF6DCA_37.86%,#FFB24B_86.43%)] bg-clip-text text-transparent">
+                    {chunks}
+                  </span>
+                ),
+              })}
+            </h1>
+          </SlideUp>
 
-          <motion.div
-            variants={fadeUp}
-            initial="hidden"
-            animate="visible"
-            custom={2}
-          className="mt-6 flex flex-wrap items-center justify-center md:justify-start gap-6 md:gap-8"
+          <SlideUp
+            delay={0.3}
+            duration={0.6}
+            className="mt-6 flex flex-wrap items-center justify-center md:justify-start gap-6 md:gap-8"
           >
             <Button asChild variant="default" size="lg" className="px-5 py-3 md:px-7 md:py-5">
               <Link href={`/${locale}/login`}>{t("view")}</Link>
@@ -133,14 +101,14 @@ export function Hero() {
                 {t("private")}
               </p>
             </div>
-          </motion.div>
+          </SlideUp>
         </div>
 
         {/* Right / Hero image — visible on md+ */}
         <motion.div
-        variants={slideIn(isRTL ? "left" : "right")}
-        initial="hidden"
-        animate="visible"
+          initial={{ opacity: 0, x: isRTL ? -60 : 60 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8, ease: EASE_OUT, delay: 0.3 }}
           className={`absolute top-8 hidden md:block ${isRTL ? "left-0" : "right-0"}`}
         >
           <Image
@@ -154,24 +122,22 @@ export function Hero() {
           />
         </motion.div>
 
-         {/* Mobile hero image — shown below text on small screens */}
-                <motion.div
-                  variants={fadeUp}
-                  initial="hidden"
-                  animate="visible"
-                  custom={3}
-                  className="flex md:hidden justify-center z-10 -mx-4"
-                >
-                  <Image
-                    src="/images/hero-image.png"
-                    alt="Hero Image"
-                    width={480}
-                    height={360}
-                    priority
-                    draggable={false}
-                    className="w-full max-w-90 sm:max-w-105 object-contain drop-shadow-lg"
-                  />
-                </motion.div>
+        {/* Mobile hero image — shown below text on small screens */}
+        <SlideUp
+          delay={0.45}
+          duration={0.6}
+          className="flex md:hidden justify-center z-10 -mx-4"
+        >
+          <Image
+            src="/images/hero-image.png"
+            alt="Hero Image"
+            width={480}
+            height={360}
+            priority
+            draggable={false}
+            className="w-full max-w-90 sm:max-w-105 object-contain drop-shadow-lg"
+          />
+        </SlideUp>
       </div>
     </section>
   );

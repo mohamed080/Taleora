@@ -9,32 +9,7 @@ import { AiFillStar } from "react-icons/ai";
 import "keen-slider/keen-slider.min.css";
 import Link from "next/link";
 import { motion, useInView } from "framer-motion";
-
-const fadeUp = {
-  hidden: { opacity: 0, y: 40 },
-  visible: (i = 0) => ({
-    opacity: 1,
-    y: 0,
-    transition: {
-      delay: i * 0.15,
-      duration: 0.6,
-      ease: [0.22, 1, 0.36, 1] as const,
-    },
-  }),
-};
-
-const slideIn = (direction: "left" | "right") => ({
-  hidden: { opacity: 0, x: direction === "right" ? 60 : -60 },
-  visible: {
-    opacity: 1,
-    x: 0,
-    transition: {
-      duration: 0.8,
-      ease: [0.22, 1, 0.36, 1] as const,
-      delay: 0.2,
-    },
-  },
-});
+import { FadeIn, SlideUp, EASE_OUT } from "../ui/animations";
 
 const books = [
   { id: 1, image: "/images/bookposter-1.png", key: "book1" },
@@ -74,38 +49,29 @@ export function PrincessSection() {
     <section ref={sectionRef} className="py-10 max-w-7xl mx-auto px-4">
       <div className="grid grid-cols-1 lg:grid-cols-2 items-start">
         {/* Left — text + image */}
-        <motion.div
-          variants={slideIn(isRTL ? "right" : "left")}
-          initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
-          className="flex flex-col items-center text-center lg:items-start md:text-start mt-5"
-        >
-          <motion.h1
-            variants={fadeUp}
-            initial="hidden"
-            animate={isInView ? "visible" : "hidden"}
-            custom={0}
+        <div className="flex flex-col items-center text-center lg:items-start md:text-start mt-5">
+          <SlideUp
+            delay={0}
+            margin="-80px"
             className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#82003C] mb-3"
           >
-            {t("princess.title")} <br />
-            <span className="text-primary">{t("princess.highlight")}</span>
-          </motion.h1>
+            <h1>
+              {t("princess.title")} <br />
+              <span className="text-primary">{t("princess.highlight")}</span>
+            </h1>
+          </SlideUp>
 
-          <motion.p
-            variants={fadeUp}
-            initial="hidden"
-            animate={isInView ? "visible" : "hidden"}
-            custom={1}
+          <SlideUp
+            delay={0.15}
+            margin="-80px"
             className="text-gray font-medium text-xl sm:text-2xl lg:text-3xl mb-8 sm:mb-12"
           >
-            {t("princess.subtitle")}
-          </motion.p>
+            <p>{t("princess.subtitle")}</p>
+          </SlideUp>
 
-          <motion.div
-            variants={fadeUp}
-            initial="hidden"
-            animate={isInView ? "visible" : "hidden"}
-            custom={2}
+          <SlideUp
+            delay={0.3}
+            margin="-80px"
             className="w-full max-w-75 sm:max-w-95 md:max-w-none flex justify-center lg:justify-start"
           >
             <Image
@@ -116,15 +82,13 @@ export function PrincessSection() {
               draggable={false}
               className=" h-auto object-contain"
             />
-          </motion.div>
-        </motion.div>
+          </SlideUp>
+        </div>
 
         {/* Right — Slider */}
-        <motion.div
-          variants={fadeUp}
-          initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
-          custom={3}
+        <SlideUp
+          delay={0.45}
+          margin="-80px"
           className="relative w-full"
         >
           {/* Prev arrow */}
@@ -258,7 +222,7 @@ export function PrincessSection() {
               />
             ))}
           </div>
-        </motion.div>
+        </SlideUp>
       </div>
     </section>
   );

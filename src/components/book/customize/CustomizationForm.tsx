@@ -3,10 +3,10 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { FaCartPlus } from "react-icons/fa";
 import { Button } from "@/components/ui/button";
-import { itemVariants } from "./customize-animations";
 import { SuccessBanner } from "./SuccessBanner";
 import { ImageUploadEmpty } from "./ImageUploadEmpty";
 import { PriceSummary } from "./PriceSummary";
+import { StaggerItem, SlideUp, EASE_OUT } from "@/components/ui/animations";
 
 export function CustomizationForm({
   bookKey,
@@ -41,37 +41,35 @@ export function CustomizationForm({
 }) {
   return (
     <>
-      <motion.h4
+      <StaggerItem
         className="text-2xl sm:text-3xl lg:text-4xl font-bold text-foreground"
-        variants={itemVariants}
       >
         {t(`${bookKey}.title`)}
-      </motion.h4>
+      </StaggerItem>
 
-      <motion.p
+      <StaggerItem
         className="text-sm sm:text-base text-[#2C2C2C] leading-tight"
-        variants={itemVariants}
       >
         {t("customize.description")}
-      </motion.p>
+      </StaggerItem>
 
       {/* Step 1 – Child name */}
-      <motion.label className="block mb-4" variants={itemVariants}>
+      <StaggerItem className="block mb-4" as="label">
         <span className="block text-sm sm:text-base font-semibold text-[#2C2C2C] mb-3 ">
           {t("customize.stepChildName")}
         </span>
         <motion.input
           whileFocus={{ scale: 1.01, borderColor: "#FFB24B" }}
-          transition={{ duration: 0.2 }}
+          transition={{ duration: 0.2, ease: EASE_OUT }}
           value={childName}
           onChange={(e) => setChildName(e.target.value)}
           placeholder={t("customize.childNamePlaceholder")}
           className="w-full rounded-lg border border-[#F4F4F4] px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#FFB24B] transition-colors text-sm sm:text-base"
         />
-      </motion.label>
+      </StaggerItem>
 
       {/* Step 2 – Child photo */}
-      <motion.div className="mb-4" variants={itemVariants}>
+      <StaggerItem className="mb-4">
         <span className="block text-sm font-semibold text-[#2C2C2C] mb-3">
           {t("customize.stepChildPhoto")}
         </span>
@@ -82,10 +80,10 @@ export function CustomizationForm({
             <ImageUploadEmpty onFileChange={onFileChange} t={t} />
           )}
         </AnimatePresence>
-      </motion.div>
+      </StaggerItem>
 
       {/* Step 3 – Cover material */}
-      <motion.div className="space-y-3" variants={itemVariants}>
+      <StaggerItem className="space-y-3">
         <span className="block text-sm sm:text-base font-semibold text-[#2C2C2C]">
           {t("customize.coverStep")}
         </span>
@@ -122,12 +120,12 @@ export function CustomizationForm({
             </span>
           </motion.label>
         ))}
-      </motion.div>
+      </StaggerItem>
 
       {/* Divider */}
-      <motion.span
+      <StaggerItem
+        as="span"
         className="inline-flex w-full border-b-2 border-[#C2C2C2]"
-        variants={itemVariants}
       />
 
       {/* Price summary */}
@@ -139,7 +137,7 @@ export function CustomizationForm({
       />
 
       {/* Add to cart */}
-      <motion.div variants={itemVariants}>
+      <StaggerItem>
         <motion.div
           whileHover={isComplete ? { scale: 1.02 } : {}}
           whileTap={isComplete ? { scale: 0.98 } : {}}
@@ -155,7 +153,7 @@ export function CustomizationForm({
             {t("customize.addToCart")}
           </Button>
         </motion.div>
-      </motion.div>
+      </StaggerItem>
     </>
   );
 }

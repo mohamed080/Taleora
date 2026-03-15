@@ -2,7 +2,8 @@
 
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-import { fadeScaleVariants, imageSlideVariants } from "./customize-animations";
+import { imageSlideVariants } from "./customize-animations";
+import { FadeIn, SlideUp, EASE_OUT } from "@/components/ui/animations";
 
 export function BookPreviewSlider({
   photoPreview,
@@ -24,12 +25,9 @@ export function BookPreviewSlider({
       <div className="rounded-3xl border border-muted p-4 shadow-xl">
         <AnimatePresence>
           {!photoPreview ? (
-            <motion.div
+            <FadeIn
               key="placeholder"
-              variants={fadeScaleVariants}
-              initial="hidden"
-              animate="visible"
-              exit="exit"
+              scale={0.9}
               className="flex flex-col gap-5 items-center justify-center h-64 sm:h-80 md:h-118 text-center px-6"
             >
               <motion.div
@@ -55,7 +53,7 @@ export function BookPreviewSlider({
               <h4 className="text-[#ADADAD] text-lg sm:text-xl md:text-2xl max-w-xs">
                 {t("customize.previewEmpty")}
               </h4>
-            </motion.div>
+            </FadeIn>
           ) : (
             <div className="relative rounded-2xl overflow-hidden bg-black/5 h-118.25">
               <AnimatePresence custom={slideDir} mode="wait">
@@ -84,11 +82,8 @@ export function BookPreviewSlider({
       </div>
 
       {photoPreview && sliderImages.length > 1 && (
-        <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: 12 }}
-          transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+        <SlideUp
+          delay={0.1}
           className="flex flex-col gap-4"
         >
           <div className="flex items-center justify-center gap-6 bg-white rounded-3xl shadow-xl px-8 h-17.5 max-w-64 mx-auto mt-4">
@@ -125,7 +120,7 @@ export function BookPreviewSlider({
                 initial={{ opacity: 0, y: 4 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -4 }}
-                transition={{ duration: 0.2 }}
+                transition={{ duration: 0.2, ease: EASE_OUT }}
                 className="text-sm sm:text-base font-medium min-w-[48px] text-center"
               >
                 {activeSlide === 0
@@ -177,13 +172,13 @@ export function BookPreviewSlider({
                   width: i === activeSlide ? 20 : 8,
                   backgroundColor: i === activeSlide ? "#FF6DCA" : "#D4D4D4",
                 }}
-                transition={{ duration: 0.3, ease: "easeOut" }}
+                transition={{ duration: 0.3, ease: EASE_OUT }}
                 className="h-2 rounded-full cursor-pointer"
                 aria-label={`Go to slide ${i + 1}`}
               />
             ))}
           </motion.div>
-        </motion.div>
+        </SlideUp>
       )}
     </>
   );
