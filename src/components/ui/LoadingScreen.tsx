@@ -1,7 +1,7 @@
 'use client';
 
 
-import { useEffect, useState, useMemo } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence, type Variants } from "framer-motion";
 import { useTranslations } from "next-intl";
@@ -77,18 +77,26 @@ const bottomCurtainVariants: Variants = {
 
 /**
  * Particle system for a magical atmosphere
+ * Particles are generated client-side only to avoid SSR hydration mismatches
+ * caused by Math.random() producing different values on server vs. client.
  */
 const ParticleSystem = () => {
-  const particles = useMemo(() => 
-    Array.from({ length: 15 }).map((_, i) => ({
-      id: i,
-      x: Math.random() * 100,
-      y: Math.random() * 100,
-      size: Math.random() * 4 + 2,
-      duration: Math.random() * 3 + 4,
-      delay: Math.random() * -5,
-    })), 
-  []);
+  const [particles, setParticles] = useState<
+    { id: number; x: number; y: number; size: number; duration: number; delay: number }[]
+  >([]);
+
+  useEffect(() => {
+    setParticles(
+      Array.from({ length: 15 }).map((_, i) => ({
+        id: i,
+        x: Math.random() * 100,
+        y: Math.random() * 100,
+        size: Math.random() * 4 + 2,
+        duration: Math.random() * 3 + 4,
+        delay: Math.random() * -5,
+      }))
+    );
+  }, []);
 
   return (
     <div className="absolute inset-0 pointer-events-none opacity-40">

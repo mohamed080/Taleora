@@ -33,7 +33,7 @@ export const FadeIn = ({
   const ref = React.useRef(null);
   const isInView = useInView(ref, { once, margin });
 
-  const MotionComponent = motion(Component);
+  const MotionComponent = motion.create(Component);
 
   const variants: Variants = {
     hidden: { opacity: 0, scale },
@@ -76,7 +76,7 @@ export const SlideUp = ({
   const ref = React.useRef(null);
   const isInView = useInView(ref, { once, margin });
 
-  const MotionComponent = motion(Component);
+  const MotionComponent = motion.create(Component);
 
   const variants: Variants = {
     hidden: { opacity: 0, y },
@@ -118,7 +118,7 @@ export const StaggerContainer = ({
   const ref = React.useRef(null);
   const isInView = useInView(ref, { once, margin });
 
-  const MotionComponent = motion(Component);
+  const MotionComponent = motion.create(Component);
 
   const variants: Variants = {
     hidden: { opacity: 0 },
@@ -164,7 +164,7 @@ export const StaggerItem = ({
     },
   };
 
-  const MotionComponent = motion(Component);
+  const MotionComponent = motion.create(Component);
 
   return (
     <MotionComponent variants={variants} className={className} {...props}>
