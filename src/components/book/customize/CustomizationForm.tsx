@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { SuccessBanner } from "./SuccessBanner";
 import { ImageUploadEmpty } from "./ImageUploadEmpty";
 import { PriceSummary } from "./PriceSummary";
-import { StaggerItem, SlideUp, EASE_OUT } from "@/components/ui/animations";
+import { StaggerItem, EASE_OUT } from "@/components/ui/animations";
 
 export function CustomizationForm({
   bookKey,

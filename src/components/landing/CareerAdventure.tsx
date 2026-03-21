@@ -28,7 +28,7 @@ export async function CareerAdventure() {
   return (
     <section className="mx-auto max-w-5xl px-4 pt-15 text-center">
       {/* Heading */}
-      <h1 className="mb-1 text-3xl sm:text-4xl font-bold text-accent px-4 sm:px-20">
+      <h1 className="mb-1 text-3xl sm:text-4xl font-bold text-accent px-4 sm:px-20 font-seasons">
         {t("title")}
       </h1>
       <p className="mb-5 text-lg sm:text-xl font-medium text-gray">

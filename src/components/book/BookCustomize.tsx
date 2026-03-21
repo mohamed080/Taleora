@@ -5,13 +5,13 @@ import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { toast } from "sonner";
 import type { Book } from "@/lib/books";
-import { motion, useReducedMotion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   CustomizationForm,
   BookPreviewSlider,
 } from "./customize";
 import { useCartStore } from "@/store/useCartStore";
-import { SlideUp, StaggerContainer, StaggerItem } from "@/components/ui/animations";
+import { StaggerContainer, StaggerItem } from "@/components/ui/animations";
 
 type BookCustomizeProps = {
   book: Book;
@@ -26,7 +26,6 @@ function parsePrice(price: string) {
 export function BookCustomize({ book, locale }: BookCustomizeProps) {
   const t = useTranslations("books");
   const router = useRouter();
-  const shouldReduceMotion = useReducedMotion();
 
   const [childName, setChildName] = useState("");
   const [photoFile, setPhotoFile] = useState<File | null>(null);

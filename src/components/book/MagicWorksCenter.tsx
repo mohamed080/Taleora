@@ -80,7 +80,7 @@ export function MagicWorksCenter() {
             initial="hidden"
             animate={isInView ? "visible" : "hidden"}
             custom={0}
-            className="text-3xl sm:text-4xl font-bold text-accent "
+            className="text-3xl sm:text-4xl font-bold text-accent font-seasons"
           >
             {t("title")}
           </motion.h1>

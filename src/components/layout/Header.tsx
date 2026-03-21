@@ -1,28 +1,39 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useLocale, useTranslations } from "next-intl";
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { RiGlobalFill } from "react-icons/ri";
 import { FaShoppingCart } from "react-icons/fa";
+import { LogOut, User, ShoppingBag, BookOpen } from "lucide-react";
 import { Button } from "../ui/button";
 import { navLinks } from "@/constants/enums";
 import { motion, AnimatePresence, Variants } from "framer-motion";
 import { useCartStore } from "@/store/useCartStore";
-import { useEffect } from "react";
+import { useAuthStore } from "@/store/useAuthStore";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 export function Header() {
   const t = useTranslations("header");
+  const tAuth = useTranslations("auth.userMenu");
   const locale = useLocale();
   const pathname = usePathname();
+  const router = useRouter();
   const otherLocale = locale === "ar" ? "en" : "ar";
   const [menuOpen, setMenuOpen] = useState(false);
 
-  // Cart State hydration
+  // Hydration guard
   const [mounted, setMounted] = useState(false);
   const cartCount = useCartStore((state) => state.items.length);
+  const { user, isAuthenticated, logout } = useAuthStore();
 
   useEffect(() => {
     setMounted(true);
@@ -30,6 +41,11 @@ export function Header() {
 
   const localePath = pathname?.replace(`/${locale}`, "") || "";
   const switchHref = `/${otherLocale}${localePath}`;
+
+  const handleLogout = () => {
+    logout();
+    router.push(`/${locale}/login`);
+  };
 
   // Framer Motion variants
   const menuVariants = {
@@ -58,6 +74,9 @@ export function Header() {
     closed: { opacity: 0 },
     open: { opacity: 1, transition: { duration: 0.25 } },
   };
+
+  // User initial for avatar
+  const userInitial = user?.firstName?.charAt(0)?.toUpperCase() || "U";
 
   return (
     <>
@@ -99,14 +118,58 @@ export function Header() {
 
           {/* Desktop Actions */}
           <div className="hidden md:flex items-center gap-4 lg:gap-10">
-            <div className="flex items-center gap-2">
-              <Button asChild variant="link" size="lg" className="border-0!">
-                <Link href={`/${locale}/login`}>{t("login")}</Link>
-              </Button>
-              <Button asChild variant="default" size="lg" className="px-5!">
-                <Link href={`/${locale}/signup`}>{t("signup")}</Link>
-              </Button>
-            </div>
+            {/* Auth buttons / User dropdown */}
+            {mounted && isAuthenticated && user ? (
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <button className="flex items-center gap-2 rounded-full border border-gray-200 bg-white px-3 py-1.5 text-sm font-medium text-gray-700 shadow-sm transition-colors hover:bg-gray-50 focus:outline-none">
+                    <span className="flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br from-[#FF6DCA] to-[#FDC37A] text-sm font-bold text-white">
+                      {userInitial}
+                    </span>
+                    <span className="max-w-[100px] truncate">
+                      {user.firstName}
+                    </span>
+                  </button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end" className="w-48">
+                  <DropdownMenuItem asChild>
+                    <Link href={`/${locale}`} className="flex items-center gap-2 cursor-pointer">
+                      <User className="h-4 w-4" />
+                      {tAuth("myAccount")}
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem asChild>
+                    <Link href={`/${locale}`} className="flex items-center gap-2 cursor-pointer">
+                      <ShoppingBag className="h-4 w-4" />
+                      {tAuth("myOrders")}
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem asChild>
+                    <Link href={`/${locale}/mybooks`} className="flex items-center gap-2 cursor-pointer">
+                      <BookOpen className="h-4 w-4" />
+                      {tAuth("myBooks")}
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem
+                    onClick={handleLogout}
+                    className="flex items-center gap-2 cursor-pointer text-red-500 focus:text-red-500"
+                  >
+                    <LogOut className="h-4 w-4" />
+                    {tAuth("logout")}
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            ) : (
+              <div className="flex items-center gap-2">
+                <Button asChild variant="link" size="lg" className="border-0!">
+                  <Link href={`/${locale}/login`}>{t("login")}</Link>
+                </Button>
+                <Button asChild variant="default" size="lg" className="px-5!">
+                  <Link href={`/${locale}/signup`}>{t("signup")}</Link>
+                </Button>
+              </div>
+            )}
 
             {/* Cart Icon */}
             <Link href={`/${locale}/cart`} className="relative text-secondary hover:text-primary transition-colors flex items-center h-full">
@@ -242,7 +305,7 @@ export function Header() {
                   className="my-2 border-t border-orange-100"
                 />
 
-                {/* CTA Buttons */}
+                {/* CTA Buttons / User Info */}
                 <motion.div
                   custom={navLinks.length + 1}
                   variants={linkVariants}
@@ -251,32 +314,74 @@ export function Header() {
                   exit="closed"
                   className="flex flex-col gap-3 px-1"
                 >
-                  <Button
-                    asChild
-                    variant="default"
-                    size="lg"
-                    className="w-full"
-                  >
-                    <Link
-                      href={`/${locale}/signup`}
-                      onClick={() => setMenuOpen(false)}
-                    >
-                      {t("signup")}
-                    </Link>
-                  </Button>
-                  <Button
-                    asChild
-                    variant="outline"
-                    size="lg"
-                    className="w-full"
-                  >
-                    <Link
-                      href={`/${locale}/login`}
-                      onClick={() => setMenuOpen(false)}
-                    >
-                      {t("login")}
-                    </Link>
-                  </Button>
+                  {mounted && isAuthenticated && user ? (
+                    <>
+                      {/* User info */}
+                      <div className="flex items-center gap-3 rounded-xl bg-gray-50 px-4 py-3">
+                        <span className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-[#FF6DCA] to-[#FDC37A] text-sm font-bold text-white">
+                          {userInitial}
+                        </span>
+                        <div>
+                          <p className="text-sm font-semibold text-gray-800">
+                            {user.firstName} {user.lastName}
+                          </p>
+                          <p className="text-xs text-gray-500">{user.phone}</p>
+                        </div>
+                      </div>
+
+                      {/* Menu Links */}
+                      <Link
+                        href={`/${locale}/mybooks`}
+                        onClick={() => setMenuOpen(false)}
+                        className="flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium text-secondary hover:bg-orange-50 hover:text-primary transition-colors"
+                      >
+                        <BookOpen className="h-4 w-4" />
+                        {tAuth("myBooks")}
+                      </Link>
+
+                      <Button
+                        variant="outline"
+                        size="lg"
+                        className="w-full text-red-500 border-red-200 hover:bg-red-50 hover:text-red-600"
+                        onClick={() => {
+                          setMenuOpen(false);
+                          handleLogout();
+                        }}
+                      >
+                        <LogOut className="h-4 w-4 mr-2" />
+                        {tAuth("logout")}
+                      </Button>
+                    </>
+                  ) : (
+                    <>
+                      <Button
+                        asChild
+                        variant="default"
+                        size="lg"
+                        className="w-full"
+                      >
+                        <Link
+                          href={`/${locale}/signup`}
+                          onClick={() => setMenuOpen(false)}
+                        >
+                          {t("signup")}
+                        </Link>
+                      </Button>
+                      <Button
+                        asChild
+                        variant="outline"
+                        size="lg"
+                        className="w-full"
+                      >
+                        <Link
+                          href={`/${locale}/login`}
+                          onClick={() => setMenuOpen(false)}
+                        >
+                          {t("login")}
+                        </Link>
+                      </Button>
+                    </>
+                  )}
                 </motion.div>
               </div>
             </motion.div>

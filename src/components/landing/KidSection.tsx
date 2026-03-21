@@ -184,7 +184,7 @@ export function KidSection() {
           <SlideUp
             delay={0}
             margin="-80px"
-            className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#0064AB] mb-3 mt-5"
+            className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#0064AB] mb-3 mt-5 font-seasons"
           >
             <h1>
               {t("kid.title")} <br />

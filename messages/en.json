@@ -40,10 +40,6 @@
   "books": {
     "title": "This Month Bestsellers",
     "subtitle": "The stories kids and parents can't stop talking about.",
-    "browseBooks": {
-      "title": "Our Bookstore",
-      "subtitle": "Find the perfect personalized adventure."
-    },
     "princess": {
       "title": "Books for your",
       "highlight": "little princess",
@@ -207,5 +203,83 @@
   },
   "loading": {
     "tagline": "Every story starts with a name."
+  },
+  "PromoBanner": {
+    "title": "Explore Our Storybooks for kids",
+    "subtitle": "Crafted to spark imagination and lasting memories.",
+    "imageAlt": "Mother and child reading a storybook"
+  },
+  "auth": {
+    "login": {
+      "title": "Sign In",
+      "subtitle": "Enter your username and password",
+      "usernameLabel": "Username",
+      "usernamePlaceholder": "Enter your Username",
+      "passwordLabel": "Password",
+      "passwordPlaceholder": "Enter your Password",
+      "rememberMe": "Remember me",
+      "forgotPassword": "Forgot Password ?",
+      "signIn": "Sign in",
+      "noAccount": "Don't have an account ?",
+      "createOne": "Create One!",
+      "or": "Or",
+      "googleSignIn": "Sign in with Google",
+      "loginSuccess": "Welcome back!",
+      "loginError": "Login failed. Please try again."
+    },
+    "signup": {
+      "title": "Sign Up",
+      "subtitle": "Enter the required data and you are good to go!",
+      "firstNameLabel": "First Name",
+      "firstNamePlaceholder": "Enter your first name",
+      "familyNameLabel": "Family Name",
+      "familyNamePlaceholder": "Enter your family name",
+      "passwordLabel": "Password",
+      "passwordPlaceholder": "Enter Password",
+      "phoneLabel": "Phone Number",
+      "phonePlaceholder": "+301  Enter your phone number",
+      "signUp": "Sign Up",
+      "or": "Or",
+      "googleSignIn": "Sign in with Google",
+      "signupSuccess": "Account created successfully!",
+      "signupError": "Signup failed. Please try again."
+    },
+    "forgotPassword": {
+      "title": "Forgot Password?",
+      "subtitle": "Enter your phone number to receive a verification code",
+      "phoneLabel": "Phone Number",
+      "phonePlaceholder": "+301  Enter your phone number",
+      "sendCode": "Send Code",
+      "or": "Or",
+      "googleSignIn": "Sign in with Google",
+      "success": "Verification code sent!",
+      "error": "Failed to send code. Please try again."
+    },
+    "resetPassword": {
+      "title": "Excellent. let’s reset your Password",
+      "subtitle": "Enter your new password",
+      "newPasswordLabel": "New Password",
+      "newPasswordPlaceholder": "Enter your Password",
+      "repeatPasswordLabel": "Repeat Your Password",
+      "repeatPasswordPlaceholder": "Enter your Password",
+      "resetPassword": "Reset password",
+      "backToSignIn": "Back to sign in",
+      "success": "Password reset successfully!",
+      "error": "Failed to reset password. Please try again."
+    },
+    "userMenu": {
+      "myAccount": "My Account",
+      "myOrders": "My Orders",
+      "myBooks": "My Books",
+      "logout": "Logout"
+    }
+  },
+  "mybooks": {
+    "title": "My Books",
+    "description": "Your personalized storybooks will appear here."
+  },
+  "support": {
+    "title": "Support",
+    "description": "Need help? Our team is here for you."
   }
 }

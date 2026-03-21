@@ -39,10 +39,6 @@
   "books": {
     "title": "الأكثر مبيعاً هذا الشهر",
     "subtitle": "القصص التي لا يتوقف الأطفال والآباء عن الحديث عنها.",
-    "browseBooks": {
-      "title": "المكتبة",
-      "subtitle": "ابحث عن المغامرة الشخصية المثالية."
-    },
     "princess": {
       "title": "كتب ل",
       "highlight": "الأميرة الصغيرة",
@@ -207,5 +203,83 @@
   },
   "loading": {
     "tagline": "كل قصة تبدأ باسم."
+  },
+   "PromoBanner": {
+    "title": "استكشف قصصنا للاطفال",
+    "subtitle": "صُممت لإثارة الخيال وخلق ذكريات تدوم.",
+    "imageAlt": "أم وطفلها يقرآن كتاب قصص"
+  },
+  "auth": {
+    "login": {
+      "title": "تسجيل الدخول",
+      "subtitle": "أدخل اسم المستخدم وكلمة المرور",
+      "usernameLabel": "اسم المستخدم",
+      "usernamePlaceholder": "أدخل اسم المستخدم",
+      "passwordLabel": "كلمة المرور",
+      "passwordPlaceholder": "أدخل كلمة المرور",
+      "rememberMe": "تذكرني",
+      "forgotPassword": "نسيت كلمة المرور؟",
+      "signIn": "تسجيل الدخول",
+      "noAccount": "ليس لديك حساب؟",
+      "createOne": "أنشئ واحداً!",
+      "or": "أو",
+      "googleSignIn": "تسجيل الدخول بجوجل",
+      "loginSuccess": "مرحباً بعودتك!",
+      "loginError": "فشل تسجيل الدخول. حاول مرة أخرى."
+    },
+    "signup": {
+      "title": "إنشاء حساب",
+      "subtitle": "أدخل البيانات المطلوبة وستكون جاهزاً!",
+      "firstNameLabel": "الاسم الأول",
+      "firstNamePlaceholder": "أدخل اسمك الأول",
+      "familyNameLabel": "اسم العائلة",
+      "familyNamePlaceholder": "أدخل اسم العائلة",
+      "passwordLabel": "كلمة المرور",
+      "passwordPlaceholder": "أدخل كلمة المرور",
+      "phoneLabel": "رقم الهاتف",
+      "phonePlaceholder": "+301  أدخل رقم هاتفك",
+      "signUp": "إنشاء حساب",
+      "or": "أو",
+      "googleSignIn": "تسجيل الدخول بجوجل",
+      "signupSuccess": "تم إنشاء الحساب بنجاح!",
+      "signupError": "فشل إنشاء الحساب. حاول مرة أخرى."
+    },
+    "forgotPassword": {
+      "title": "نسيت كلمة المرور؟",
+      "subtitle": "أدخل رقم هاتفك لتلقي رمز التحقق",
+      "phoneLabel": "رقم الهاتف",
+      "phonePlaceholder": "+301  أدخل رقم هاتفك",
+      "sendCode": "إرسال الرمز",
+      "or": "أو",
+      "googleSignIn": "تسجيل الدخول بجوجل",
+      "success": "تم إرسال رمز التحقق!",
+      "error": "فشل إرسال الرمز. حاول مرة أخرى."
+    },
+    "resetPassword": {
+      "title": "ممتاز، لنقم بإعادة تعيين كلمة المرور",
+      "subtitle": "أدخل كلمة المرور الجديدة",
+      "newPasswordLabel": "كلمة المرور الجديدة",
+      "newPasswordPlaceholder": "أدخل كلمة المرور",
+      "repeatPasswordLabel": "أعد كتابة كلمة المرور",
+      "repeatPasswordPlaceholder": "أدخل كلمة المرور",
+      "resetPassword": "إعادة تعيين كلمة المرور",
+      "backToSignIn": "العودة لتسجيل الدخول",
+      "success": "تم إعادة تعيين كلمة المرور بنجاح!",
+      "error": "فشل إعادة تعيين كلمة المرور. حاول مرة أخرى."
+    },
+    "userMenu": {
+      "myAccount": "حسابي",
+      "myOrders": "طلباتي",
+      "myBooks": "كتبي",
+      "logout": "تسجيل الخروج"
+    }
+  },
+  "mybooks": {
+    "title": "كتبي",
+    "description": "ستظهر كتبك المخصصة هنا."
+  },
+  "support": {
+    "title": "الدعم",
+    "description": "تحتاج مساعدة؟ فريقنا هنا من أجلك."
   }
 }

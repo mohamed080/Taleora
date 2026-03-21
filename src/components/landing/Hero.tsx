@@ -69,7 +69,7 @@ export function Hero() {
           <SlideUp
             delay={0.15}
             duration={0.6}
-            className="text-base leading-snug text-accent sm:text-lg md:text-[22px] lg:text-[26px] max-w-120"
+            className="text-base leading-snug text-accent sm:text-lg md:text-[22px] lg:text-[26px] max-w-120 font-seasons"
           >
             <h1>
               {t.rich("title", {

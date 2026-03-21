@@ -54,7 +54,7 @@ export function TopRatedBooks() {
         </Button>
       </SlideUp>
       {/* Heading */}
-      <SlideUp delay={0.15} margin="-80px" className="text-3xl sm:text-4xl font-bold text-accent text-center">
+      <SlideUp delay={0.15} margin="-80px" className="text-3xl sm:text-4xl font-bold text-accent text-center font-seasons">
         <h1>{t("title")}</h1>
       </SlideUp>
       {/* Subtitle */}

@@ -4,7 +4,7 @@ import { useLocale, useTranslations } from "next-intl";
 import Image from "next/image";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { FadeIn, SlideUp, StaggerContainer, StaggerItem, EASE_OUT } from "../ui/animations";
+import { SlideUp, StaggerContainer, StaggerItem, EASE_OUT } from "../ui/animations";
 
 export function MagicWorks() {
   const t = useTranslations("magicWorks");
@@ -80,7 +80,7 @@ export function MagicWorks() {
           {/* Heading */}
           <SlideUp
             delay={0}
-            className="text-3xl sm:text-4xl font-bold text-accent text-center"
+            className="text-3xl sm:text-4xl font-bold text-accent text-center font-seasons"
           >
             <h1>{t("title")}</h1>
           </SlideUp>

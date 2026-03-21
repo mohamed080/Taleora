@@ -19,7 +19,7 @@ export async function FaqSection() {
 
   return (
     <section className="mx-auto max-w-4xl px-4 py-19 md:px-8">
-      <h2 className="text-center text-2xl font-bold text-accent md:text-4xl">
+      <h2 className="text-center text-2xl font-bold text-accent md:text-4xl font-seasons">
         {t("title")}
       </h2>
 

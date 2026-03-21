@@ -4,9 +4,7 @@ import { motion, type Variants } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
-import { Button } from "@/components/ui/button";
 import type { Book } from "@/lib/books";
-import { FiArrowRight } from "react-icons/fi";
 
 const containerVariants: Variants = {
   hidden: { opacity: 0 },
@@ -41,24 +39,24 @@ export function BooksGrid({ books, locale }: { books: Book[]; locale: string }) 
       variants={containerVariants}
       initial="hidden"
       animate="visible"
-      className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8"
+      className="grid grid-cols-1 gap-y-7 md:grid-cols-2 md:gap-5.25 lg:grid-cols-3 lg:gap-5.25 xl:grid-cols-[repeat(3,390px)] xl:justify-between xl:gap-x-0 w-full"
     >
       {books.map((book) => (
         <motion.div
           key={book.id}
           variants={cardVariants}
           whileHover={{ y: -8 }}
-          className="group relative flex flex-col bg-white rounded-3xl p-4 sm:p-5 shadow-sm border border-orange-50 hover:shadow-xl transition-all duration-300 ease-out"
+          className="group relative flex flex-col w-full mx-auto max-w-89.5 space-y-4 lg:mx-0 lg:max-w-none xl-[390px] items-start pb-6 md:pb-8 transition-all duration-300 ease-out"
         >
           {/* Image Container */}
           <Link
             href={`/${locale}/books/${book.id}`}
-            className="block relative w-full aspect-[3/4] rounded-2xl overflow-hidden mb-5 bg-[#F9F9F9]"
+            className="block relative xl:w-97.5 xl:h-97.5 aspect-3/4 rounded-tr-md rounded-br-md w-full filter filter-[drop-shadow(-12px_12px_8px_rgba(0,0,0,0.5))] transform-[perspective(1000px)_rotateY(3deg)] overflow-hidden mb-5 bg-[#F9F9F9]"
           >
             <motion.div
               whileHover={{ scale: 1.05 }}
               transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-              className="relative w-full h-full"
+              className="relative w-full h-full  bg-zinc-100"
             >
               <Image
                 src={book.image}
@@ -88,24 +86,14 @@ export function BooksGrid({ books, locale }: { books: Book[]; locale: string }) 
               </Link>
             </div>
             
-            <p className="text-sm text-[#6F6F6F] line-clamp-2 mb-4 flex-1">
+            <p className="text-base text-[#6F6F6F] line-clamp-2 flex-1 mt-1">
               {t(`${book.key}.subtitle`)}
             </p>
-
-            <div className="flex items-center justify-between mt-auto pt-4 border-t border-gray-100">
-              <span className="font-bold text-[#1A1A1A] text-lg">
-                {book.price}
-              </span>
-              <Button
-                asChild
-                size="sm"
-                className="rounded-full px-4 font-semibold gap-2 shadow-sm hover:shadow-md transition-shadow"
-              >
-                <Link href={`/${locale}/books/${book.id}/customize`}>
-                  {t("personalize")}
-                  <FiArrowRight />
-                </Link>
-              </Button>
+            <div className="flex items-center gap-2 whitespace-nowrap">
+                <span className="text-[#ACACAC] font-medium text-[22px] leading-11 tracking-[-0.3px]">From</span>
+                <span className="text-primary  font-bold text-lg sm:text-[22px] leading-5 tracking-[-0.05px]">
+                    $34.99
+                </span>
             </div>
           </div>
         </motion.div>

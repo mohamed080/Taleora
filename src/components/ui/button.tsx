@@ -20,6 +20,8 @@ const buttonVariants = cva(
           "bg-destructive/10 text-destructive hover:bg-destructive/20 focus-visible:border-destructive/40 focus-visible:ring-destructive/20 dark:bg-destructive/20 dark:hover:bg-destructive/30 dark:focus-visible:ring-destructive/40",
         link: "text-secondary border border-secondary hover:text-black/80 hover:bg-secondary/20 aria-expanded:bg-secondary aria-expanded:text-secondary-foreground",
         gradient: "bg-[linear-gradient(132.78deg,#FF6DCA_37.86%,#FFB24B_86.43%)] text-white text-sm font-semibold hover:brightness-110",
+         social:
+          "bg-[#F6F6F6] text-black border-0 rounded-[9px] hover:bg-gray-300 active:scale-[0.97] shadow-sm",
       },
       size: {
         default:

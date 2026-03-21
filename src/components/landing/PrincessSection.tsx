@@ -53,7 +53,7 @@ export function PrincessSection() {
           <SlideUp
             delay={0}
             margin="-80px"
-            className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#82003C] mb-3"
+            className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#82003C] mb-3 font-seasons"
           >
             <h1>
               {t("princess.title")} <br />

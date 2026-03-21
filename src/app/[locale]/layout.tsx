@@ -7,7 +7,7 @@ import { hasLocale } from "next-intl";
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
 import { getMessages } from "next-intl/server";
-import { Footer, Header, SectionDividerSm } from "@/components/landing";
+import { Header } from "@/components/landing";
 import { Toaster } from "@/components/ui/sonner";
 
 const montserrat = Montserrat({
@@ -67,8 +67,6 @@ export default async function RootLayout({
           <SplashWrapper>
             <Header />
             {children}
-            <SectionDividerSm />
-            <Footer />
             <Toaster />
           </SplashWrapper>
         </NextIntlClientProvider>
