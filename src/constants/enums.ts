@@ -9,5 +9,5 @@ export enum Routes {
   ADMIN = "admin",
 }
 
-export const navLinks = ["home", "books", "stickers", "mybooks", "support"];
+export const navLinks = ["home", "books", "stickers", "support"];
 

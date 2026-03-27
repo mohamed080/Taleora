@@ -142,7 +142,7 @@ const FloatingLabelInput = React.forwardRef<
           <label
             htmlFor={inputId}
             className={cn(
-              "absolute inset-s-3 -top-px z-10 -translate-y-1/2",
+              "absolute inset-s-3 -top-px z-20 -translate-y-1/2",
               "bg-white leading-none font-semibold select-none ",
               "transition-colors duration-200 ",
               s.label,
@@ -157,7 +157,7 @@ const FloatingLabelInput = React.forwardRef<
           {leftIcon && (
             <span
               className={cn(
-                "absolute inset-s-3.5 top-1/2 -translate-y-1/2 z-10",
+                "absolute inset-s-3.5 top-1/2 -translate-y-1/2 z-20",
                 "text-primary group-focus-within:text-current transition-colors",
                 s.iconSize,
               )}
