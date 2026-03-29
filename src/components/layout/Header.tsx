@@ -31,6 +31,7 @@ export function Header() {
   const pathname = usePathname();
   const router = useRouter();
   const otherLocale = locale === "ar" ? "en" : "ar";
+  const dir = locale === "ar" ? "rtl" : "ltr";
   const [menuOpen, setMenuOpen] = useState(false);
 
   // Hydration guard
@@ -171,7 +172,7 @@ export function Header() {
 
             {/* Auth buttons / User dropdown */}
             {mounted && isAuthenticated && user ? (
-              <DropdownMenu>
+              <DropdownMenu dir={dir}>
                 <DropdownMenuTrigger asChild>
                   <button className="flex items-center gap-2 px-3 py-1.5 lg:ms-4 text-base font-semibold text-primary transition-colors hover:bg-gray-50 focus:outline-none">
                     <GiNinjaHead />
@@ -191,7 +192,7 @@ export function Header() {
                   <DropdownMenuItem asChild>
                     <Link
                       href={`/${locale}/profile`}
-                      className="flex items-center gap-2 cursor-pointer focus:bg-gray-200 py-2"
+                      className="flex items-center gap-2 py-2"
                     >
                       <User className="h-4 w-4" />
                       {tAuth("myAccount")}
@@ -200,7 +201,7 @@ export function Header() {
                   <DropdownMenuItem asChild>
                     <Link
                       href={`/${locale}`}
-                      className="flex items-center gap-2 cursor-pointer focus:bg-gray-200 py-2"
+                      className="flex items-center gap-2 py-2"
                     >
                       <ShoppingBag className="h-4 w-4" />
                       {tAuth("myOrders")}
@@ -209,7 +210,7 @@ export function Header() {
                   <DropdownMenuItem asChild>
                     <Link
                       href={`/${locale}/mybooks`}
-                      className="flex items-center gap-2 cursor-pointer focus:bg-gray-200 py-2"
+                      className="flex items-center gap-2 py-2"
                     >
                       <BookOpen className="h-4 w-4" />
                       {tAuth("myBooks")}
@@ -218,7 +219,7 @@ export function Header() {
                   <DropdownMenuSeparator />
                   <DropdownMenuItem
                     onClick={handleLogout}
-                    className="flex items-center gap-2 cursor-pointer text-red-500 focus:text-red-500 focus:bg-gray-200 py-2"
+                    className="flex items-center gap-2 text-red-500 focus:text-red-500 py-2"
                   >
                     <LogOut className="h-4 w-4" />
                     {tAuth("logout")}

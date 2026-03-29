@@ -7,3 +7,7 @@ export * from "./sonner";
 export * from "./Floatinglabelinput";
 export * from "./Phonefield"
 export * from "./Preferencesdropdown";  
+export * from "./dialog";
+export * from "./animations";
+export * from "./dropdown-menu";
+export * from "./alert-dialog";

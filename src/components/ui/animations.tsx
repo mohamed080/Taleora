@@ -1,10 +1,24 @@
 "use client";
 
 import React from "react";
-import { motion, HTMLMotionProps, Variants, useInView } from "framer-motion";
+import { motion, HTMLMotionProps, useInView, type Variants } from "framer-motion";
 
 export const EASE_OUT = [0.22, 1, 0.36, 1] as const;
 
+export const itemVariants: Variants = {
+  hidden: { opacity: 0, y: 14 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.38, ease: [0.22, 1, 0.36, 1] } },
+};
+
+export const colVariants: Variants = {
+  hidden: { opacity: 0, y: 28, scale: 0.98 },
+  visible: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] } },
+};
+
+export const priceVariants: Variants = {
+  initial: { opacity: 0, y: -5 },
+  animate: { opacity: 1, y: 0, transition: { duration: 0.25, ease: "easeOut" } },
+};
 interface BaseAnimationProps extends HTMLMotionProps<"div"> {
   children: React.ReactNode;
   delay?: number;

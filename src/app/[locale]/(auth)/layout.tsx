@@ -44,10 +44,7 @@ export default function AuthLayout({
           />
         </FadeIn>
 
-        {/* Card container */}
-        <div className="relative z-10 w-full max-w-120 rounded-[16px] bg-white px-6 py-8 shadow-[0_2px_24px_rgba(0,0,0,0.06)] sm:px-12 sm:py-9">
-          {children}
-        </div>
+        <div className="relative z-10 w-full">{children}</div>
       </div>
     </>
   );

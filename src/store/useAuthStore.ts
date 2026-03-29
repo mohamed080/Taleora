@@ -5,6 +5,8 @@ export interface AuthUser {
   firstName: string;
   lastName: string;
   phone: string;
+  email?: string;
+  avatar?: string;
 }
 
 interface AuthState {
@@ -12,6 +14,7 @@ interface AuthState {
   token: string | null;
   isAuthenticated: boolean;
   login: (user: AuthUser, token: string) => void;
+  updateUser: (updates: Partial<AuthUser>) => void;
   logout: () => void;
 }
 
@@ -26,6 +29,10 @@ export const useAuthStore = create<AuthState>()(
         document.cookie = `taleora_auth_token=${token}; path=/; max-age=${60 * 60 * 24 * 7}; SameSite=Lax`;
         set({ user, token, isAuthenticated: true });
       },
+      updateUser: (updates) =>
+        set((state) => ({
+          user: state.user ? { ...state.user, ...updates } : state.user,
+        })),
       logout: () => {
         // Clear the cookie
         document.cookie = "taleora_auth_token=; path=/; max-age=0; SameSite=Lax";

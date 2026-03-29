@@ -146,6 +146,13 @@
       "cityPlaceholder": "Mansoura",
       "postalCode": "Postal Code",
       "postalCodePlaceholder": "12345",
+      "validation": {
+        "fullNameRequired": "Full name is required",
+        "phoneRequired": "Phone number is required",
+        "phoneInvalid": "Please enter a valid phone number",
+        "addressRequired": "Address is required",
+        "cityRequired": "City is required"
+      },
       "private": "100% Private & Secure"
     }
   },
@@ -237,7 +244,7 @@
       "passwordLabel": "Password",
       "passwordPlaceholder": "Enter Password",
       "phoneLabel": "Phone Number",
-      "phonePlaceholder": "+301  Enter your phone number",
+        "phonePlaceholder": "+301  Enter your phone number",
       "signUp": "Sign Up",
       "or": "Or",
       "googleSignIn": "Sign in with Google",
@@ -281,5 +288,39 @@
   "support": {
     "title": "Support",
     "description": "Need help? Our team is here for you."
+  },
+  "profile": {
+    "shippingInfo": "Shipping Information",
+    "edit": "Edit",
+    "nameLabel": "Name",
+    "namePlaceholder": "Enter your full name",
+    "emailLabel": "Email",
+    "emailPlaceholder": "Your email address",
+    "newPasswordLabel": "New Password",
+    "newPasswordPlaceholder": "New password (min. 8 chars)",
+    "confirmNewPasswordLabel": "Confirm New Password",
+    "confirmNewPasswordPlaceholder": "Confirm new password",
+    "save": "Save",
+    "changePhoto": "Update image",
+    "profileImageAlt": "{name} profile image",
+    "nameRequired": "Name is required",
+    "passwordMinLength": "Password must be at least 8 characters",
+    "passwordsDoNotMatch": "Passwords do not match",
+    "profileUpdated": "Profile updated successfully",
+    "addAddress": "Add Address",
+    "addAnotherAddress": "Add a different address",
+    "updateAddress": "Update Address",
+    "confirmDeleteTitle": "Delete address",
+    "confirmDeleteBody": "Are you sure you want to delete the address for {name}?",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "editProfile": "Edit Profile",
+    "validation": {
+      "fullNameRequired": "Full name is required",
+      "phoneRequired": "Phone number is required",
+      "phoneInvalid": "Please enter a valid phone number",
+      "addressRequired": "Address is required",
+      "cityRequired": "City is required"
+    }
   }
 }

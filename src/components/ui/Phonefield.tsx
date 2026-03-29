@@ -16,6 +16,7 @@ interface PhoneFieldProps {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   control: Control<any>;
   label: string;
+  showLabel?: boolean;
   error?: string;
   hint?: string;
   placeholder?: string;
@@ -50,6 +51,7 @@ export function PhoneField({
   name,
   control,
   label,
+  showLabel = true,
   error,
   hint,
   placeholder = "Enter your phone number",
@@ -137,17 +139,19 @@ export function PhoneField({
             />
 
             {/* Label on border */}
-            <span
-              className={cn(
-                "absolute start-3 -top-px z-10 -translate-y-1/2 bg-white",
-                "leading-none font-semibold select-none pointer-events-none",
-                "transition-colors duration-200",
-                sizeLabel[inputSize],
-                b.label,
-              )}
-            >
-              {label}
-            </span>
+            {showLabel && (
+              <span
+                className={cn(
+                  "absolute inset-s-3 -top-px z-10 -translate-y-1/2 bg-white",
+                  "leading-none font-semibold select-none pointer-events-none",
+                  "transition-colors duration-200",
+                  sizeLabel[inputSize],
+                  b.label,
+                )}
+              >
+                {label}
+              </span>
+            )}
 
             {/* Row */}
             <div className="relative z-10 flex h-full items-center">
@@ -195,7 +199,7 @@ export function PhoneField({
 
                 {/* Dropdown */}
                 {open && (
-                  <div className="absolute start-0 top-full z-50 mt-1.5 max-h-60 w-60 overflow-y-auto rounded-xl border border-gray-200 bg-white shadow-lg">
+                  <div className="absolute inset-s-0 top-full z-50 mt-1.5 max-h-60 w-60 overflow-y-auto rounded-xl border border-gray-200 bg-white shadow-lg">
                     {getCountries().map((c) => {
                       const flag = String.fromCodePoint(
                         ...[...c.toUpperCase()].map(

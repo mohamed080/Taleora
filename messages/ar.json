@@ -146,6 +146,13 @@
       "cityPlaceholder": "المنصورة",
       "postalCode": "الرمز البريدي",
       "postalCodePlaceholder": "12345",
+      "validation": {
+        "fullNameRequired": "الاسم الكامل مطلوب",
+        "phoneRequired": "رقم الهاتف مطلوب",
+        "phoneInvalid": "يرجى إدخال رقم هاتف صالح",
+        "addressRequired": "العنوان مطلوب",
+        "cityRequired": "المدينة مطلوبة"
+      },
       "private": "100% خصيصة ومحمية"
     }
   },
@@ -281,5 +288,40 @@
   "support": {
     "title": "الدعم",
     "description": "تحتاج مساعدة؟ فريقنا هنا من أجلك."
-  }
+  },
+    "profile": {
+      "shippingInfo": "معلومات الشحن",
+      "edit": "تعديل",
+      "nameLabel": "الاسم",
+      "namePlaceholder": "أدخل اسمك الكامل",
+      "emailLabel": "البريد الإلكتروني",
+      "emailPlaceholder": "البريد الإلكتروني",
+      "newPasswordLabel": "كلمة المرور الجديدة",
+      "newPasswordPlaceholder": "كلمة مرور جديدة (8 أحرف على الأقل)",
+      "confirmNewPasswordLabel": "تأكيد كلمة المرور الجديدة",
+      "confirmNewPasswordPlaceholder": "أكد كلمة المرور الجديدة",
+      "save": "حفظ",
+      "changePhoto": "تحديث الصورة",
+      "profileImageAlt": "صورة الملف الشخصي لـ {name}",
+      "nameRequired": "الاسم مطلوب",
+      "passwordMinLength": "يجب أن تكون كلمة المرور 8 أحرف على الأقل",
+      "passwordsDoNotMatch": "كلمتا المرور غير متطابقتين",
+      "profileUpdated": "تم تحديث الملف الشخصي بنجاح",
+      "addAddress": "اضافة عنوان",
+      "addAnotherAddress": "اضافة عنوان اخر",
+      "updateAddress": "تحديث العنوان",
+      "confirmDeleteTitle": "حذف العنوان",
+      "confirmDeleteBody": "هل أنت متأكد من حذف عنوان {name}؟",
+      "cancel": "إلغاء",
+      "delete": "حذف",
+      "editProfile": "تعديل الملف الشخصي",
+      "validation": {
+        "fullNameRequired": "الاسم الكامل مطلوب",
+        "phoneRequired": "رقم الهاتف مطلوب",
+        "phoneInvalid": "يرجى إدخال رقم هاتف صالح",
+        "addressRequired": "العنوان مطلوب",
+        "cityRequired": "المدينة مطلوبة"
+      }
+
+    }
 }

@@ -2,27 +2,12 @@
 
 import { useTranslations } from "next-intl";
 import Image from "next/image";
-import { motion, type Variants } from "framer-motion";
+import { motion } from "framer-motion";
 import { FiDollarSign } from "react-icons/fi";
 import { FaShieldAlt } from "react-icons/fa";
-import { Button } from "@/components/ui/button";
 import { getBookById } from "@/lib/books";
 import { useCartStore } from "@/store/useCartStore";
-
-const itemVariants: Variants = {
-  hidden: { opacity: 0, y: 14 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.38, ease: [0.22, 1, 0.36, 1] } },
-};
-
-const colVariants: Variants = {
-  hidden: { opacity: 0, y: 28, scale: 0.98 },
-  visible: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] } },
-};
-
-const priceVariants: Variants = {
-  initial: { opacity: 0, y: -5 },
-  animate: { opacity: 1, y: 0, transition: { duration: 0.25, ease: "easeOut" } },
-};
+import { Button, colVariants, itemVariants, priceVariants } from "@/components/ui";
 
 type CheckoutSummaryProps = {
   isFormValid: boolean;
@@ -138,7 +123,7 @@ export function CheckoutSummary({ isFormValid, shippingFee }: CheckoutSummaryPro
           size="lg"
           disabled={!isFormValid}
         >
-          <span className="flex items-center justify-center w-[24px] h-[24px] rounded-full p-1 border border-primary bg-white text-[#ff6dc9]">
+          <span className="flex items-center justify-center w-6 h-6 rounded-full p-1 border border-primary bg-white text-[#ff6dc9]">
             <FiDollarSign size={16} />
           </span>
           {t("checkout.confirm")}

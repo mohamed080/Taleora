@@ -34,6 +34,7 @@ export async function loginApi(payload: LoginPayload): Promise<AuthResponse> {
     firstName: "Demo",
     lastName: "User",
     phone: "+201234567890",
+    email: payload.email,
   };
   const token = "mock-jwt-token-" + Date.now();
 

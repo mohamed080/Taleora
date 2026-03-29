@@ -1,8 +1,16 @@
+import ProfileWrapper from "./ProfileWrapper";
 
-function page() {
+export default async function Page({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  console.log(locale);
+
   return (
-    <div>page</div>
-  )
+    <section className="mx-auto max-w-6xl">
+        <ProfileWrapper locale={locale}  />
+    </section>
+  );
 }
-
-export default page
