@@ -12,6 +12,7 @@ import { motion, useInView, AnimatePresence } from "framer-motion";
 type BookDetailProps = {
   book: Book;
   locale: string;
+  namespace?: "books" | "stickers";
 };
 
 const fadeUp = {
@@ -34,8 +35,9 @@ const thumbnails = [
   "/images/book-d.png",
 ];
 
-export function BookDetail({ book, locale }: BookDetailProps) {
-  const t = useTranslations("books");
+export function BookDetail({ book, locale, namespace = "books" }: BookDetailProps) {
+  const t = useTranslations(namespace);
+  const common = useTranslations("books");
   const [activeImg, setActiveImg] = useState(0);
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-60px" });
@@ -89,7 +91,7 @@ export function BookDetail({ book, locale }: BookDetailProps) {
                 >
                   <Image
                     src={thumbnails[activeImg]}
-                    alt={t("imageAlt")}
+                    alt={common("imageAlt")}
                     width={436}
                     height={444}
                     className="object-cover h-full flex-1 sm:w-full"
@@ -122,7 +124,7 @@ export function BookDetail({ book, locale }: BookDetailProps) {
             >
               <div
                 className="flex items-center gap-1 text-[#F5C15E] shadow-md rounded-full px-2 py-1 text-base sm:text-lg"
-                aria-label={t("ratingAlt")}
+                aria-label={common("ratingAlt")}
               >
                 <AiFillStar />
                 <AiFillStar />
@@ -159,7 +161,7 @@ export function BookDetail({ book, locale }: BookDetailProps) {
               </p>
               <Image
                 src="/images/visa.png"
-                alt={t("coinAlt")}
+                alt={common("coinAlt")}
                 width={172}
                 height={28}
                 className="h-6 sm:h-7 w-auto object-contain"
@@ -180,7 +182,7 @@ export function BookDetail({ book, locale }: BookDetailProps) {
                 variant="gradient"
                 size="lg"
               >
-                <Link href={`/${locale}/books/${book.id}/customize`}>{t("personalize")}</Link>
+                <Link href={`/${locale}/${namespace}/${book.id}/customize`}>{common("personalize")}</Link>
               </Button>
             </motion.div>
 

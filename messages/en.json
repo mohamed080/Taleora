@@ -66,6 +66,22 @@
       "description": "When kindness calls, even the smallest acts can change everything. In this enchanting personalized tale, a Princess follows a glowing guide through gardens, lakes, and stormy skies, helping new friends discover their true strength. Along the way, she learns that bravery and compassion are the brightest magic of all.",
       "sold": "Over 10k sold"
     },
+    "sticker1": {
+      "age": "Ages 4-9",
+      "title": "Princess Sticker Pack",
+      "subtitle": "A bright sticker set for enchanted adventures.",
+      "description": "Decorate every page with glittery stickers and magical characters.",
+      "sold": "Over 8k shipped"
+    },
+    "sticker2": {
+      "age": "Ages 4-9",
+      "title": "Princess Sticker Pack",
+      "subtitle": "A bright sticker set for enchanted adventures.",
+      "description": "Decorate every page with glittery stickers and magical characters.",
+      "sold": "Over 8k shipped"
+    },
+    "from": "From",
+    "viewDetails": "View Details",
     "personalize": "Personalize",
     "ratingAlt": "Book rating",
     "prev": "Previous",
@@ -133,6 +149,7 @@
       "checkout": "Go to order details"
     },
     "checkout": {
+      "backtocart": "Back to cart",
       "shippingFee": "Shipping Fee",
       "confirm": "Confirm Purchase",
       "shippingInfo": "Shipping Information",
@@ -155,6 +172,51 @@
       },
       "private": "100% Private & Secure"
     }
+  },
+  "library": {
+    "title": "My Magical Library",
+    "subtitle": "A place to manage finished orders, incomplete orders, and restock suggestions.",
+    "backHome": "Back to Home",
+    "tabs": {
+      "books": "Books",
+      "stickers": "Stickers"
+    },
+    "finishedOrders": "Finished Orders",
+    "incompleteOrders": "Incomplete Orders",
+    "readyToRestock": "Ready to Re-stock your Kid Shelf?",
+    "readySectionTitle": "Finished Orders",
+    "readySectionSubtitle": "Your latest completed orders are ready to review and reorder.",
+    "personalizedOn": "Personalized : {date}",
+    "delivered": "Delivered",
+    "confirmed": "Confirmed",
+    "downloadPdf": "Download PDF",
+    "reOrder": "Re-Order",
+    "exploreBooks": "Explore Books",
+    "completeOrder": "Complete Order",
+    "suggestionsLabel": "Recommended",
+    "restockTitle": "Ready to Re-stock your Kid Shelf?",
+    "continueShopping": "Continue Shopping",
+    "personalize": "Personalize"
+  },
+  "stickers": {
+    "title": "Sticker Packs",
+    "subtitle": "Explore magical sticker sheets for every story.",
+    "sticker1": {
+      "age": "Ages 4-9",
+      "title": "Princess Sticker Pack",
+      "subtitle": "A bright sticker set for enchanted adventures.",
+      "description": "Decorate every page with glittery stickers and magical characters.",
+      "sold": "Over 8k shipped"
+    },
+    "sticker2": {
+      "age": "Ages 4-9",
+      "title": "Space Sticker Pack",
+      "subtitle": "A cosmic collection for adventurous kids.",
+      "description": "Add stars, rockets, and friendly aliens to every story.",
+      "sold": "Over 7k shipped"
+    },
+    "from": "From",
+    "viewDetails": "View Details"
   },
   "careerAdventure": {
     "title": "Inspire Their Dreams with Hyper personalised Career Adventures",

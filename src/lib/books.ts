@@ -61,9 +61,71 @@ export const books: Book[] = [
   },
 ]
 
+export const stickers: Book[] = [
+  {
+    id: 1,
+    key: "sticker1",
+    image: "/images/stickerposter.png",
+    price: "20 EGP",
+    features: [
+      "Perfect for kids ages 4 to 10 years old",
+      "Inspires empathy, courage, and self-belief",
+      "32 beautifully illustrated pages",
+      "Preview available before ordering",
+      "Free shipping to the U.S.",
+    ]
+  },
+  {
+    id: 2,
+    key: "sticker2",
+    image: "/images/stickerposter.png",
+    price: "35 EGP",
+    features: [
+      "Perfect for kids ages 4 to 10 years old",
+      "Inspires empathy, courage, and self-belief",
+      "32 beautifully illustrated pages",
+      "Preview available before ordering",
+      "Free shipping to the U.S.",
+    ]
+  },
+  {
+    id: 3,
+    key: "sticker1",
+    image: "/images/stickerposter.png",
+    price: "15 EGP",
+    features: [
+      "Perfect for kids ages 4 to 10 years old",
+      "Inspires empathy, courage, and self-belief",
+      "32 beautifully illustrated pages",
+      "Preview available before ordering",
+      "Free shipping to the U.S.",
+    ]
+  },
+  {
+    id: 4,
+    key: "sticker1",
+    image: "/images/stickerposter.png",
+    price: "15 EGP",
+    features: [
+      "Perfect for kids ages 4 to 10 years old",
+      "Inspires empathy, courage, and self-belief",
+      "32 beautifully illustrated pages",
+      "Preview available before ordering",
+      "Free shipping to the U.S.",
+    ]
+  },
+]
+
 export function getBookById(id?: string | string[] | number) {
   if (Array.isArray(id)) id = id[0]
   const parsed = Number(id)
   if (Number.isNaN(parsed)) return undefined
   return books.find((book) => book.id === parsed)
+}
+
+export function getStickerById(id?: string | string[] | number) {
+  if (Array.isArray(id)) id = id[0]
+  const parsed = Number(id)
+  if (Number.isNaN(parsed)) return undefined
+  return stickers.find((sticker) => sticker.id === parsed)
 }

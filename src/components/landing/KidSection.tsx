@@ -59,9 +59,8 @@ export function KidSection() {
           <button
             type="button"
             onClick={() => instanceRef.current?.prev()}
-            disabled={currentSlide === 0}
             aria-label={t("prev")}
-            className="absolute top-1/2 -left-2 lg:-left-4 2xl:-left-20 -translate-y-1/2 z-10 rounded-full transition cursor-pointer  disabled:opacity-40 disabled:cursor-not-allowed"
+            className="absolute top-1/2 -left-2 lg:-left-4 2xl:-left-20 -translate-y-1/2 z-10 rounded-full transition cursor-pointer"
           >
             <Image
               src={isRTL ? "/images/arrow-right-blue.svg" : "/images/arrow-left-blue.svg"}
@@ -148,9 +147,8 @@ export function KidSection() {
           <button
             type="button"
             onClick={() => instanceRef.current?.next()}
-            disabled={currentSlide === slideGroups.length - 1}
             aria-label={t("next")}
-            className="absolute top-1/2 -right-2 lg:-right-4 2xl:-right-20 -translate-y-1/2 z-10  p-3 transition cursor-pointer  disabled:opacity-40 disabled:cursor-not-allowed"
+            className="absolute top-1/2 -right-2 lg:-right-4 2xl:-right-20 -translate-y-1/2 z-10  p-3 transition cursor-pointer"
           >
             <Image
               src={isRTL ? "/images/arrow-left-blue.svg" : "/images/arrow-right-blue.svg"}

@@ -20,7 +20,7 @@ export default async function Page({ params }: ShippingPageProps) {
           <Button asChild size="lg" className="px-4 h-10 text-sm">
             <Link href={`/${locale}/cart`}>
               <GrUndo className="size-5.5" />
-              {t("cart.continueShopping")}
+              {t("checkout.backtocart")}
             </Link>
           </Button>
         </div>

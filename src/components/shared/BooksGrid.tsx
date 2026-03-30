@@ -31,8 +31,33 @@ const cardVariants: Variants = {
   },
 };
 
-export function BooksGrid({ books, locale }: { books: Book[]; locale: string }) {
-  const t = useTranslations("books");
+export function BooksGrid({
+  books,
+  locale,
+  namespace = "books",
+  itemHref,
+}: {
+  books: Book[];
+  locale: string;
+  namespace?: string;
+  itemHref?: string | ((item: Book) => string);
+}) {
+  const t = useTranslations(namespace);
+
+  const buildHref = (item: Book) => {
+    if (typeof itemHref === "function") {
+      return itemHref(item);
+    }
+
+    if (itemHref) {
+      return itemHref
+        .replace(/:id/g, String(item.id))
+        .replace(/:locale/g, locale)
+        .replace(/:key/g, item.key);
+    }
+
+    return `/${locale}/books/${item.id}`;
+  };
 
   return (
     <motion.div
@@ -50,7 +75,7 @@ export function BooksGrid({ books, locale }: { books: Book[]; locale: string }) 
         >
           {/* Image Container */}
           <Link
-            href={`/${locale}/books/${book.id}`}
+            href={buildHref(book)}
             className="block relative xl:w-97.5 xl:h-97.5 aspect-3/4 rounded-tr-md rounded-br-md w-full filter filter-[drop-shadow(-12px_12px_8px_rgba(0,0,0,0.5))] transform-[perspective(1000px)_rotateY(3deg)] overflow-hidden mb-5 bg-[#F9F9F9]"
           >
             <motion.div
@@ -67,11 +92,11 @@ export function BooksGrid({ books, locale }: { books: Book[]; locale: string }) 
                 priority
               />
             </motion.div>
-            
+
             {/* Quick View Overlay (Desktop only) */}
             <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 hidden sm:flex items-center justify-center pointer-events-none">
               <span className="bg-white text-black text-sm font-bold py-2 px-4 rounded-full shadow-lg transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-                View Details
+                {t("viewDetails")}
               </span>
             </div>
           </Link>
@@ -79,21 +104,23 @@ export function BooksGrid({ books, locale }: { books: Book[]; locale: string }) 
           {/* Book Info */}
           <div className="flex flex-col flex-1">
             <div className="flex items-start justify-between gap-2 mb-2">
-              <Link href={`/${locale}/books/${book.id}`}>
+              <Link href={buildHref(book)}>
                 <h3 className="font-bold text-lg sm:text-xl text-[#1A1A1A] line-clamp-2 leading-tight group-hover:text-primary transition-colors">
                   {t(`${book.key}.title`)}
                 </h3>
               </Link>
             </div>
-            
+
             <p className="text-base text-[#6F6F6F] line-clamp-2 flex-1 mt-1">
               {t(`${book.key}.subtitle`)}
             </p>
             <div className="flex items-center gap-2 whitespace-nowrap">
-                <span className="text-[#ACACAC] font-medium text-[22px] leading-11 tracking-[-0.3px]">From</span>
-                <span className="text-primary  font-bold text-lg sm:text-[22px] leading-5 tracking-[-0.05px]">
-                    $34.99
-                </span>
+              <span className="text-[#ACACAC] font-medium text-[22px] leading-11 tracking-[-0.3px]">
+                {t("from")}
+              </span>
+              <span className="text-primary  font-bold text-lg sm:text-[22px] leading-5 tracking-[-0.05px]">
+                {book.price}
+              </span>
             </div>
           </div>
         </motion.div>

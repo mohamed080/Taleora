@@ -16,6 +16,7 @@ import { StaggerContainer, StaggerItem } from "@/components/ui/animations";
 type BookCustomizeProps = {
   book: Book;
   locale: string;
+  namespace?: "books" | "stickers";
 };
 
 function parsePrice(price: string) {
@@ -23,8 +24,10 @@ function parsePrice(price: string) {
   return match ? Number(match[0]) : 0;
 }
 
-export function BookCustomize({ book, locale }: BookCustomizeProps) {
+export function BookCustomize({ book, locale, namespace = "books" }: BookCustomizeProps) {
+  const itemT = useTranslations(namespace);
   const t = useTranslations("books");
+
   const router = useRouter();
 
   const [childName, setChildName] = useState("");
@@ -148,7 +151,7 @@ export function BookCustomize({ book, locale }: BookCustomizeProps) {
     const item = {
       bookId: book.id,
       bookKey: book.key,
-      bookTitle: t(`${book.key}.title`),
+      bookTitle: itemT(`${book.key}.title`),
       bookImage: book.image,
       name: childName,
       photo: photoDataUrl,
